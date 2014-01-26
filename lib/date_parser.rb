@@ -95,7 +95,8 @@ class DateParser
     shablon = /(\d{1,2}ч|\d{1,2} ч)|(в \d{1,2}:\d{1,2})|(в\d{1,2}:\d{1,2})|(\d{2} ми)|(\d{2}ми)|(\d{1,2} \d{2}м)|(в \d{1,2})|(в\d{1,2})|(\d{1,2}:\d{1,2})/
     matches = title.match(shablon)
     if matches
-      mytime = (matches.count == 1) ? matches : matches.join(' ')
+      short_matches = matches.to_a.compact.uniq
+      mytime = (short_matches.size == 1) ? short_matches[0] : short_matches.join(' ')
     end
     matches2 = title.match(/\d{1,4}/)
     shablon = /(дней|лет|нед|год|мес|день|дня|час|мин|\d{1,2}м|\d{1,2} м)/
@@ -106,11 +107,11 @@ class DateParser
         @answer = plus
         if matches2[0]
           @answer += matches2[0] + ' час.'
-          d[:myhours] = plus + matches2[0]
+          d[:myhours] = plus + matches2[0].to_s
         end
         if matches2[1]
           @answer += ' ' + matches2[1] + ' мин.'
-          d[:myminutes] = plus + matches2[0]
+          d[:myminutes] = plus + matches2[0].to_s
         end
         mytime = ''
       end
@@ -125,11 +126,11 @@ class DateParser
         if matches2
           @answer = plus
           @answer += ' ' + matches2[0] + ' нед. '
-          d[:myweek] = plus + matches2[0]
+          d[:myweek] = plus + matches2[0].to_s
         end
         if title.index('через нед').present?
           @answer = '+ 1 нед.'
-          d[:myweek] = plus + 1
+          d[:myweek] = plus + 1.to_s
         end
       end
 
@@ -137,11 +138,11 @@ class DateParser
         if matches2
           @answer = plus
           @answer += ' ' + matches2[0] + ' мес. '
-          d[:mymonth] = plus + matches2[0]
+          d[:mymonth] = plus + matches2[0].to_s
         end
         if title.index('через мес').present?
           @answer = '+ 1 мес.'
-          d[:mymonth] = plus + 1
+          d[:mymonth] = plus + 1.to_s
         end
       end
 
@@ -149,11 +150,11 @@ class DateParser
         if matches2
           @answer = plus
           @answer += ' ' + matches2[0] + ' год. '
-          d[:myyears] = plus + matches2[0]
+          d[:myyears] = plus + matches2[0].to_s
         end
         if title.index('через год').present?
           @answer = '+ 1 год.'
-          d[:myyears] = plus + 1
+          d[:myyears] = plus + 1.to_s
         end
       end
 
@@ -161,11 +162,11 @@ class DateParser
         if matches2
           @answer = plus
           @answer += ' ' + matches2[0] + ' дн. '
-          d[:mydays] = plus + matches2[0]
+          d[:mydays] = plus + matches2[0].to_s
         end
         if title.index('через день').present?
           @answer = '+ 1 дн.'
-          d[:mydays] = plus + 1
+          d[:mydays] = plus + 1.to_s
         end
       end
     end
@@ -182,7 +183,8 @@ class DateParser
         if need_analyse
           matches3 = mytime.match(/\d{1,4}/)
           if matches3
-            mytime = (matches3.length == 1) ? matches3 : matches3.koin(':')
+            short_matches = matches3.to_a.compact.uniq
+            mytime = (short_matches.length == 1) ? short_matches[0] : short_matches.join(':')
           end
         else
           mytime = mytime.gsub('в ','').gsub('в','')

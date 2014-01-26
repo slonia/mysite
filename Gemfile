@@ -13,6 +13,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'slim'
 gem 'unicorn'
+gem 'simple_form'
+gem 'bootstrap-sass'
 
 gem 'capistrano-deploy', group: :development, require: false
 group :doc do

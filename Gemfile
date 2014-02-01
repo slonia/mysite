@@ -1,38 +1,30 @@
 source 'https://rubygems.org'
 
-
-gem 'rails'
-gem 'pg'
-gem 'sass-rails'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails'
-gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-
-gem 'slim-rails'
-gem 'unicorn'
-gem 'simple_form'
+gem 'annotate'
 gem 'bootstrap-sass'
+gem 'cancan'
+gem 'coffee-rails'
+gem 'devise'
+gem 'enumerize'
+gem 'jbuilder', '~> 1.2'
+gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'pg'
+gem 'rails'
+gem 'sass-rails'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
+gem 'unicorn'
 
-gem 'capistrano-deploy', group: :development, require: false
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
 group :development do
   gem 'pry-rails'
+  gem 'capistrano-deploy', require: false
 end
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

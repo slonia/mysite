@@ -1,0 +1,13 @@
+common: &common
+  twitter:
+    consumer_key: KEY
+    consumer_secret: SECRET
+
+production:
+  <<: *common
+
+development:
+  <<: *common
+
+test:
+  <<: *common

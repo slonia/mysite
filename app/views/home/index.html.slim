@@ -1,32 +1,8 @@
-- if @result
-  table.table
-    tr
-      td Запрос
-      td.active = @query
-    tr
-      td Ответ
-      td.active = @result
-= form_tag '/', method: :get, class: 'form-inline' do
-  .col-lg-6
-    = label_tag :text, 'Введите содержащее дату предложение'
-    .input-group
-      = text_field_tag :text, nil, class: 'form-control'
-      span.input-group-btn
-        = submit_tag 'ok', class: 'btn btn-primary'
-
-
-
-
-
-
-/ <div class="row">
-
-/   <div class="col-lg-6">
-/     <div class="input-group">
-/       <input type="text" class="form-control">
-/       <span class="input-group-btn">
-/         <button class="btn btn-default" type="button">Go!</button>
-/       </span>
-/     </div><!-- /input-group -->
-/   </div><!-- /.col-lg-6 -->
-/ </div><!-- /.r
+h1 Hi
+- if user_signed_in?
+  ul
+    li = image_tag(current_user.image_url)
+    li = current_user.username
+    li = link_to "Sign out", destroy_user_session_path, method: :delete
+- else
+  = link_to "Sign in with twitter", user_omniauth_authorize_path(:twitter)

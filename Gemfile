@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails'
-gem 'sqlite3'
+gem 'pg'
 gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-gem 'slim'
+gem 'slim-rails'
 gem 'unicorn'
 gem 'simple_form'
 gem 'bootstrap-sass'

@@ -20,5 +20,12 @@ module Mysite
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/lib)
+    config.generators do |g|
+      g.assets = false
+      g.helper = false
+      g.test_framework  :test_unit, fixture: false
+      g.view_specs      false
+      g.helper_specs    false
+    end
   end
 end

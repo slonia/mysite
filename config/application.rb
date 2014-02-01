@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,9 +26,6 @@ module Mysite
     config.generators do |g|
       g.assets = false
       g.helper = false
-      g.test_framework  :test_unit, fixture: false
-      g.view_specs      false
-      g.helper_specs    false
     end
   end
 end

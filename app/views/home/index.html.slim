@@ -1,8 +1,14 @@
 h1 Hi
 - if user_signed_in?
   ul
-    li = image_tag(current_user.image_url)
+    li = image_tag(current_user.image_url, class: 'img-circle')
     li = current_user.username
     li = link_to "Sign out", destroy_user_session_path, method: :delete
 - else
   = link_to "Sign in with twitter", user_omniauth_authorize_path(:twitter)
+
+- if admin_signed_in?
+  p Admin signed in
+  = link_to 'Admin sign out', destroy_admin_session_path, method: :delete
+- else
+  = link_to 'Sign in as admin', new_admin_session_path

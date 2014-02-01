@@ -1,0 +1,22 @@
+h1 Listing cathedras
+
+table.table.table-bordered
+  tr
+    th Name
+    th Number
+    th Description
+    th Actions
+
+  - @cathedras.each do |cathedra|
+    tr
+      td = cathedra.name
+      td = cathedra.number
+      td = cathedra.description
+      td
+        = link_to 'Show', admin_cathedra_path(cathedra)
+        = link_to 'Edit', edit_admin_cathedra_path(cathedra)
+        = link_to 'Destroy', admin_cathedra_path(cathedra), data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Cathedra', new_admin_cathedra_path

@@ -1,0 +1,19 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  username: USER
+  password: PASSWORD
+  pool: 5
+
+development:
+  database: studentime_development
+  <<: *common
+
+test:
+  database: studentime_test
+  min_messages: WARNING
+  <<: *common
+
+production:
+  database: studentime_production
+  <<: *common

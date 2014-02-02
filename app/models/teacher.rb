@@ -16,7 +16,7 @@ class Teacher < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :cathedra
-  has_many :subjects
+  has_and_belongs_to_many :subjects
   has_many :lessons
 
   validates :surname, :name, :patronymic, :degree, presence: true

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :permit_params
 
   def current_ability
-    @current_ability ||= respond_to?(:current_admin) ? Ability.new(current_admin) : Ability.new(current_user)
+    @current_ability ||= Ability.new(current_user)
   end
 
   def after_sign_in_path_for(resource)

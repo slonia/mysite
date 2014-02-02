@@ -1,8 +1,20 @@
 body, html {
   height: 100%;
   background: url('/assets/background.png');
+  background-color: #fff;
 }
 
 #main {
   height: 100%;
+}
+
+#user_profile_menu {
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
+  li.dropdown {
+    min-width: 160px;
+  }
 }

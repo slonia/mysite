@@ -9,5 +9,11 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :teachers, 'Teachers', admin_teachers_path,
       :highlights_on => proc { controller_name == 'teachers' } if can? :read, Teacher
+
+    primary.item :rooms, 'Rooms', admin_rooms_path,
+      :highlights_on => proc { controller_name == 'rooms' } if can? :read, Room
+
+    primary.item :subjects, 'Subjects', admin_subjects_path,
+      :highlights_on => proc { controller_name == 'subjects' } if can? :read, Subject
   end
 end

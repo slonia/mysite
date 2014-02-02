@@ -13,9 +13,20 @@
 #
 
 class Teacher < ActiveRecord::Base
+  extend Enumerize
+
   belongs_to :cathedra
   has_many :subjects
   has_many :lessons
 
   validates :surname, :name, :patronymic, :degree, presence: true
+
+  enumerize :degree, in: [:head, :docent, :senior,
+                          :assistant, :lab_head, :engineer,
+                          :technician, :senior_researcher, :software_engineer,
+                          :laboratorian]
+
+  def full_name
+    [surname, name, patronymic].join(' ')
+  end
 end

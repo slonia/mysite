@@ -6,6 +6,9 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
+  - if current_admin
+    nav.navbar.navbar-default role="navigation"
+      = render_navigation context: :admin
   #main.container
     .col-md-10
       = yield

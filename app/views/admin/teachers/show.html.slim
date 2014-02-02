@@ -1,0 +1,11 @@
+dl
+  dt degree
+  dd = @teacher.degree
+  dt Surname
+  dd = @teacher.surname
+  dt Name
+  dd = @teacher.name
+  dt Patronymic
+  dd = @teacher.patronymic
+  dt Cathedra
+  dd = @teacher.cathedra.try(:full_name)

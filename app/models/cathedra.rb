@@ -12,6 +12,12 @@
 
 class Cathedra < ActiveRecord::Base
   validates :name, presence: true
+  validates :name, :number, uniqueness: true
 
   has_many :teachers
+
+  def full_name
+    prefix = number.present? ? "#{number}. " : ''
+    prefix + name
+  end
 end

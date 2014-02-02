@@ -1,0 +1,19 @@
+h1 Listing teachers
+
+- if @teachers
+  table.table.table-bordered
+    tr
+      th Degree
+      th Full name
+      th Cathedra
+      th Actions
+
+    - @teachers.each do |teacher|
+      tr
+        td = teacher.degree
+        td = teacher.full_name
+        td = teacher.cathedra.try(:full_name)
+        td = render 'actions', teacher: teacher
+  br
+
+= link_to 'New Teacher', new_admin_teacher_path, class: 'btn btn-success'

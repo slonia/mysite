@@ -12,10 +12,7 @@ table.table.table-bordered
       td = cathedra.name
       td = cathedra.number
       td = cathedra.description
-      td
-        = link_to 'Show', admin_cathedra_path(cathedra)
-        = link_to 'Edit', edit_admin_cathedra_path(cathedra)
-        = link_to 'Destroy', admin_cathedra_path(cathedra), data: {:confirm => 'Are you sure?'}, :method => :delete
+      td = render 'actions', cathedra: cathedra
 
 br
 

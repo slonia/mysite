@@ -1,0 +1,12 @@
+.well.col-md-6
+  = simple_form_for([:admin, @teacher]) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :degree
+      = f.input :surname
+      = f.input :name
+      = f.input :patronymic
+      = f.association :cathedra
+    .form-actions
+      = f.submit class: 'btn btn-primary'

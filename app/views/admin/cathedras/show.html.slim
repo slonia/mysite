@@ -1,6 +1,9 @@
-p#notice = notice
-
-
-= link_to 'Edit', edit_admin_cathedra_path(@cathedra)
-'|
-= link_to 'Back', admin_cathedras_path
+dl
+  dt = t('.number')
+  dd = @cathedra.number
+  dt = t('.name')
+  dd = @cathedra.name
+  dt = t('.description')
+  dd = @cathedra.description
+  dt = t('actions')
+  dd = render 'actions', cathedra: @cathedra

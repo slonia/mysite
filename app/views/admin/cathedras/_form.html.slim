@@ -1,5 +1,6 @@
-= simple_form_for [:admin, @cathedra] do |f|
-  = f.input :number
-  = f.input :name
-  = f.input :description
-  = f.submit
+.well.col-md-6
+  = simple_form_for [:admin, @cathedra] do |f|
+    = f.input :number
+    = f.input :name
+    = f.input :description
+    = f.submit class: 'btn btn-primary'

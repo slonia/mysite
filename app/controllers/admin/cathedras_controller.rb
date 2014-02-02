@@ -38,7 +38,7 @@ class Admin::CathedrasController < ApplicationController
   def update
     respond_to do |format|
       if @cathedra.update(admin_cathedra_params)
-        format.html { redirect_to @cathedra, notice: 'Cathedra was successfully updated.' }
+        format.html { redirect_to [:admin, @cathedra], notice: 'Cathedra was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

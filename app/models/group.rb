@@ -13,4 +13,6 @@ class Group < ActiveRecord::Base
   has_many :lessons
 
   validates :name, :term, presence: true
+
+  accepts_nested_attributes_for :lessons, allow_destroy: true
 end

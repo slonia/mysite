@@ -7,6 +7,8 @@ gem 'coffee-rails'
 gem 'devise'
 gem 'enumerize'
 gem 'jquery-rails'
+gem 'nested_form'
+gem 'net-ssh', '= 2.3'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'pg'
@@ -19,7 +21,6 @@ gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
-gem 'net-ssh', '= 2.3'
 
 group :doc do
   gem 'sdoc', require: false

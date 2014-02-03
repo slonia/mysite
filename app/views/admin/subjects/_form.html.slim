@@ -1,9 +1,10 @@
-= simple_form_for([:admin, @subject]) do |f|
-  = f.error_notification
+.well.col-md-6
+  = simple_form_for([:admin, @subject]) do |f|
+    = f.error_notification
 
-  .form-inputs
-    = f.input :name
-    = f.input :terms, collection: terms_collection, input_html: { multiple: true }, include_hidden: false, include_blank: false
-    = f.association :teachers, include_hidden: false, include_blank: false
-  .form-actions
-    = f.button :submit
+    .form-inputs
+      = f.input :name
+      = f.input :terms, collection: terms_collection, input_html: { multiple: true }, include_hidden: false, include_blank: false
+      = f.association :teachers, label_method: :full_name, include_hidden: false, include_blank: false
+    .form-actions
+      = f.submit class: 'btn btn-primary'

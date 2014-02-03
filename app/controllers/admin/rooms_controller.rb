@@ -4,9 +4,6 @@ class Admin::RoomsController < AdminController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
@@ -15,7 +12,7 @@ class Admin::RoomsController < AdminController
 
   def create
     if @room.save
-      redirect_to [:admin, @room], notice: 'Room was successfully created.'
+      redirect_to admin_rooms_url, notice: 'Room was successfully created.'
     else
       render action: 'new'
     end
@@ -23,7 +20,7 @@ class Admin::RoomsController < AdminController
 
   def update
     if @room.update(room_params)
-      redirect_to [:admin, @room], notice: 'Room was successfully updated.'
+      redirect_to admin_rooms_url, notice: 'Room was successfully updated.'
     else
       render action: 'edit'
     end

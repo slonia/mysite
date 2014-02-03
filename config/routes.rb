@@ -6,7 +6,7 @@ Mysite::Application.routes.draw do
   namespace :admin do
     resources :cathedras
     resources :teachers
-    resources :rooms
+    resources :rooms, except: :show
     resources :subjects
   end
 

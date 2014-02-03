@@ -9,5 +9,7 @@
 #
 
 class Room < ActiveRecord::Base
+  default_scope { order(:number) }
+
   validates :number, presence: true
 end

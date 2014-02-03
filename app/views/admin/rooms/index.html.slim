@@ -1,15 +1,15 @@
 h1 Listing rooms
 
-table.table.table-bordered
-  tr
-    th Number
-    th Actions
-  - @rooms.each do |room|
+- if @rooms
+  table.table.table-bordered.table-striped
     tr
-      td = room.number
-      td Actions
+      th Number
+      th Actions
+    - @rooms.each do |room|
+      tr
+        td = room.number
+        td = render 'actions', room: room
 
+  br
 
-br
-
-= link_to 'New Room', new_admin_room_path
+= link_to 'New Room', new_admin_room_path, class: 'btn btn-success'

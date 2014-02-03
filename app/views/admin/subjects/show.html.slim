@@ -1,2 +1,9 @@
-p#notice = notice
-
+dl
+  dt = t('.name')
+  dd = @subject.name
+  dt = t('.terms')
+  dd = @subject.terms.sort.join(', ')
+  dt = t('.teachers')
+  dd = @subject.teachers.map(&:full_name).join(', ')
+  dt = t('actions')
+  dd = render 'actions', subject: @subject

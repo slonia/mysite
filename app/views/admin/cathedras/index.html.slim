@@ -1,19 +1,20 @@
 h1 Listing cathedras
 
-table.table.table-bordered
-  tr
-    th Name
-    th Number
-    th Description
-    th Actions
-
-  - @cathedras.each do |cathedra|
+- if @cathedras
+  table.table.table-bordered.table-striped
     tr
-      td = cathedra.name
-      td = cathedra.number
-      td = cathedra.description
-      td = render 'actions', cathedra: cathedra
+      th Name
+      th Number
+      th Description
+      th Actions
 
-br
+    - @cathedras.each do |cathedra|
+      tr
+        td = cathedra.name
+        td = cathedra.number
+        td = cathedra.description
+        td = render 'actions', cathedra: cathedra
 
-= link_to 'New Cathedra', new_admin_cathedra_path
+  br
+
+= link_to 'New Cathedra', new_admin_cathedra_path, class: 'btn btn-success'

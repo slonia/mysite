@@ -1,16 +1,20 @@
 h1 Listing subjects
 
-table
-  tr
-    th
-    th
-    th
-
-  - @subjects.each do |subject|
+- if @subjects
+  table.table.table-bordered.table-striped
     tr
-      td
-      td
-      td
+      th Name
+      th Terms
+      th Teachers
+      th Actions
 
-br
+    - @subjects.each do |subject|
+      tr
+        td = subject.name
+        td = subject.terms.sort.join(', ')
+        td = subject.teachers.map(&:full_name).join(', ')
+        td = render 'actions', subject: subject
 
+  br
+
+= link_to 'New Subject', new_admin_subject_path, class: 'btn btn-success'

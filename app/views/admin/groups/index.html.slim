@@ -1,0 +1,17 @@
+h1 Listing rooms
+
+- if @groups.present?
+  table.table.table-bordered.table-striped
+    tr
+      th Name
+      th Term
+      th Actions
+    - @groups.each do |group|
+      tr
+        td = group.name
+        td = group.term
+        td = render 'actions', group: group
+
+  br
+
+= link_to 'New Group', new_admin_group_path, class: 'btn btn-success'

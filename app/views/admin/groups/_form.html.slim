@@ -5,5 +5,12 @@
     .form-inputs
       = f.input :name
       = f.input :term
+    .form-inputs
+      = f.fields_for :lessons do |g|
+        .well.well-sm.col-md-2
+          = g.association :subject, label: false, include_blank: 'subject'
+          = g.association :teacher, label: false, label_method: :full_name, include_blank: 'Teacher'
+          = g.association :room, label: false, label_method: :number, include_blank: 'room'
+      = f.link_to_add "add lesson", :lessons
     .form-actions
       = f.submit class: 'btn btn-primary'

@@ -16,6 +16,8 @@
 #
 
 class Lesson < ActiveRecord::Base
+  default_scope { order(:day).order(:number) }
+
   belongs_to :subject
   belongs_to :teacher
   belongs_to :room

@@ -3,10 +3,10 @@ h1 Listing subjects
 - if @subjects.present?
   table.table.table-bordered.table-striped
     tr
-      th Name
-      th Terms
-      th Teachers
-      th Actions
+      th = translate_attr(Subject, :name)
+      th = translate_attr(Subject, :terms)
+      th = translate_attr(Subject, :teachers)
+      th = t('actions')
 
     - @subjects.each do |subject|
       tr

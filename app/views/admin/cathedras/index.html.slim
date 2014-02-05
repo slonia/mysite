@@ -3,10 +3,10 @@ h1 Listing cathedras
 - if @cathedras.present?
   table.table.table-bordered.table-striped
     tr
-      th Name
-      th Number
-      th Description
-      th Actions
+      th = translate_attr(Cathedra, :name)
+      th = translate_attr(Cathedra, :number)
+      th = translate_attr(Cathedra, :description)
+      th = t('actions')
 
     - @cathedras.each do |cathedra|
       tr

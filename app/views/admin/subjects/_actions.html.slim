@@ -1,4 +1,4 @@
 .btn-group.btn-group-sm
-  = link_to 'Show', admin_subject_path(subject), class: 'btn btn-default'
-  = link_to 'Edit', edit_admin_subject_path(subject), class: 'btn btn-default'
-  = link_to 'Destroy', admin_subject_path(subject), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
+  = link_to t('show'), admin_subject_path(subject), class: 'btn btn-default'
+  = link_to t('edit'), edit_admin_subject_path(subject), class: 'btn btn-default'
+  = link_to t('destroy'), admin_subject_path(subject), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'

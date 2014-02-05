@@ -26,6 +26,8 @@ class Teacher < ActiveRecord::Base
                           :technician, :senior_researcher, :software_engineer,
                           :laboratorian]
 
+  attr_reader :full_name
+
   def full_name
     [surname, name, patronymic].join(' ')
   end

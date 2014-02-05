@@ -3,10 +3,10 @@ h1 Listing teachers
 - if @teachers.present?
   table.table.table-bordered.table-striped
     tr
-      th Degree
-      th Full name
-      th Cathedra
-      th Actions
+      th = translate_attr(Teacher, :degree)
+      th = translate_attr(Teacher, :full_name)
+      th = translate_attr(Teacher, :cathedra)
+      th = t('actions')
 
     - @teachers.each do |teacher|
       tr

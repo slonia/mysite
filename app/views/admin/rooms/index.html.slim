@@ -3,8 +3,8 @@ h1 Listing rooms
 - if @rooms.present?
   table.table.table-bordered.table-striped
     tr
-      th Number
-      th Actions
+      th = translate_attr(Room, :number)
+      th = t('actions')
     - @rooms.each do |room|
       tr
         td = room.number

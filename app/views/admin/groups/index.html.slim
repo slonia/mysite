@@ -3,9 +3,9 @@ h1 Listing rooms
 - if @groups.present?
   table.table.table-bordered.table-striped
     tr
-      th Name
-      th Term
-      th Actions
+      th = translate_attr(Group, :name)
+      th = translate_attr(Group, :term)
+      th = t('actions')
     - @groups.each do |group|
       tr
         td = group.name

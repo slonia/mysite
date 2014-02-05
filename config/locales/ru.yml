@@ -1,0 +1,47 @@
+ru:
+  actions: 'Действия'
+  show: 'Показать'
+  new: 'Создать'
+  destroy: 'Удалить'
+  edit: 'Редактировать'
+  activerecord:
+    attributes:
+      cathedra:
+        description: 'Описание'
+        name: 'Название'
+        number: 'Номер'
+      day:
+        group: 'Группа'
+        number: 'Номер'
+      group:
+        name: 'Название'
+        six_day_week: '6-дневная неделя'
+        term: 'Семестр обучения'
+      lesson:
+        day: 'День'
+        lesson_type: 'Тип'
+        number: 'Номер'
+        on_second_week: 'Раз в 2 недели'
+        room: 'Кабинет'
+        second_group: 'Для второй подгруппы'
+        subject: 'Предмет'
+        teacher: 'Учитель'
+      room:
+        number: 'Номер'
+      subject:
+        name: 'Название'
+        teachers: 'Учителя'
+        terms: 'Семестры изучения'
+      teacher:
+        cathedra: 'Кафедра'
+        degree: 'Должность'
+        full_name: 'Полное имя'
+        name: 'Имя'
+        patronymic: 'Отчество'
+        surname: 'Фамилия'
+  navigation:
+    cathedras: 'Кафедры'
+    groups: 'Группы'
+    rooms: 'Кабинеты'
+    subjects: 'Предметы'
+    teachers: 'Учителя'

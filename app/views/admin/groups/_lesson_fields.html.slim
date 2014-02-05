@@ -1,0 +1,5 @@
+= f.input :day_id, as: :hidden
+= f.association :subject, label: false, include_blank: 'subject'
+= f.association :teacher, label: false, label_method: :full_name, include_blank: 'teacher'
+= f.association :room, label: false, label_method: :number, include_blank: 'room'
+br

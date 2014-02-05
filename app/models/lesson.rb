@@ -12,7 +12,7 @@
 #  lesson_type    :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  group_id       :integer          not null
+#  day_id         :integer          not null
 #
 
 class Lesson < ActiveRecord::Base
@@ -23,5 +23,5 @@ class Lesson < ActiveRecord::Base
   belongs_to :teacher
   belongs_to :room
 
-  validates :subject, :teacher, :room, presence: true
+  validates :subject, :teacher, :room, :day, :number, presence: true
 end

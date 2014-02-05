@@ -8,7 +8,7 @@ Mysite::Application.routes.draw do
     resources :teachers
     resources :rooms, except: :show
     resources :subjects
-    resources :groups
+    resources :groups, except: :show
   end
 
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks" }

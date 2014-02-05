@@ -1,3 +1,10 @@
-h1 New room
+h1 Create new group
+.well.col-md-6
+  = simple_form_for([:admin, @group]) do |f|
+    = f.error_notification
 
-= render 'form'
+    .form-inputs
+      = f.input :name
+      = f.input :term
+    .form-actions
+      = f.submit class: 'btn btn-primary'

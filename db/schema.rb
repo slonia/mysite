@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204191114) do
+ActiveRecord::Schema.define(version: 20140205064131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20140204191114) do
     t.datetime "updated_at"
   end
 
+  create_table "days", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "number",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["group_id"], name: "index_days_on_group_id", using: :btree
+
   create_table "groups", force: true do |t|
     t.string   "name",                         null: false
     t.integer  "term",                         null: false
@@ -51,7 +60,6 @@ ActiveRecord::Schema.define(version: 20140204191114) do
   end
 
   create_table "lessons", force: true do |t|
-    t.integer  "day"
     t.integer  "number"
     t.boolean  "on_second_week", default: false, null: false
     t.boolean  "second_group",   default: false, null: false

@@ -1,4 +1,16 @@
 h1 Editing room
 
-= render 'form'
+.well
+  = simple_nested_form_for([:admin, @group]) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :name
+      = f.input :term
+    .form-inputs
+      = f.fields_for :days do |d|
+        = d.input :number
+    .form-actions
+      = f.submit class: 'btn btn-primary'
+
 

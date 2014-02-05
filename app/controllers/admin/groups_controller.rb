@@ -37,6 +37,6 @@ class Admin::GroupsController < AdminController
   private
     # Only allow a trusted parameter "white list" through.
     def group_params
-      params.require(:group).permit(:name, :term, lessons_attributes: [:id, :day, :number, :on_second_week, :second_group, :subject_id, :teacher_id, :room_id, :lesson_id, :_destroy])
+      params.require(:group).permit(:name, :term, days_attributes: [:id, :number, :group_id, lessons_attributes: [:id, :number, :on_second_week, :second_group, :subject_id, :teacher_id, :room_id, :lesson_id, :day_id, :_destroy]])
     end
 end

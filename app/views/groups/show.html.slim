@@ -1,0 +1,9 @@
+- total = @days.map(&:lessons).map(&:count).max
+table.table.table-bordered
+  tr
+    - (0...@days.count).each do |col|
+      th = day_name(col)
+  - (0...total).each do |row|
+    tr
+      - (0...@days.count).each do |col|
+        td = @days[col].lessons[row].try(:subject).try(:name) || 'none'

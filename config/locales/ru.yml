@@ -39,6 +39,25 @@ ru:
         name: 'Имя'
         patronymic: 'Отчество'
         surname: 'Фамилия'
+  enumerize:
+    lesson:
+      lesson_type:
+        lection: 'Лекция'
+        other: 'Другое'
+        practice: 'Практика'
+        seminar: 'Семинар'
+    teacher:
+      degree:
+        assistant: 'Ассистент'
+        docent: 'Доцент'
+        engineer: 'Инженер'
+        head: 'Начальник кафедры'
+        lab_head: 'Начальник лаборатории'
+        laboratorian: 'Лаборант'
+        senior: 'Старший преподаватель'
+        senior_researcher: 'Старший исследователь'
+        software_engineer: 'Инженер-программист'
+        technician: 'Техник'
   navigation:
     cathedras: 'Кафедры'
     groups: 'Группы'

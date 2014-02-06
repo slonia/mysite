@@ -13,9 +13,11 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  day_id         :integer          not null
+#  blank          :boolean          default(FALSE), not null
 #
 
 class Lesson < ActiveRecord::Base
+  extend Enumerize
   default_scope { order(:number) }
 
   belongs_to :day
@@ -23,5 +25,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :teacher
   belongs_to :room
 
-  validates :subject, :teacher, :room, :day, :number, presence: true
+  validates :subject, :teacher, :room, :day, :number, presence: true, unless: :blank
+
+  enumerize :lesson_type, in: [:lection, :practice, :other, :seminar], default: :lection
 end

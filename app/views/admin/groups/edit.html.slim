@@ -2,13 +2,11 @@ h1 Editing room
 
 .well
   = simple_nested_form_for([:admin, @group]) do |f|
-    = f.error_notification
-
     .form-inputs
       = f.input :name
       = f.input :term
     .form-inputs
-      = f.fields_for :days, wrapper: false do |d|
+      = f.fields_for :days do |d|
         .day-wrapper.col-md-2
           = d.input :group_id, as: :hidden
           = d.input :number, as: :hidden

@@ -58,6 +58,13 @@ ru:
         senior_researcher: 'Старший исследователь'
         software_engineer: 'Инженер-программист'
         technician: 'Техник'
+  days:
+    monday: 'Понедельник'
+    tuesday: 'Вторник'
+    wednesday: 'Среда'
+    thursday: 'Четверг'
+    friday: 'Пятница'
+    saturday: 'Суббота'
   navigation:
     cathedras: 'Кафедры'
     groups: 'Группы'

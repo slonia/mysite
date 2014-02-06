@@ -8,6 +8,7 @@ h1 Editing room
     .form-inputs
       = f.fields_for :days do |d|
         .day-wrapper.col-md-2
+          = day_name(d.object.number)
           = d.input :group_id, as: :hidden
           = d.input :number, as: :hidden
           = d.fields_for :lessons

@@ -12,6 +12,8 @@
 class Day < ActiveRecord::Base
   default_scope { order(:number) }
 
+  DAY_NAMES = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday]
+
   belongs_to :group
   has_many :lessons
   accepts_nested_attributes_for :lessons

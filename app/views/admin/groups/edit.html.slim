@@ -4,10 +4,10 @@ h1 Editing room
   = simple_nested_form_for([:admin, @group]) do |f|
     .form-inputs
       = f.input :name
-      = f.input :term
-    .form-inputs
+      = f.input :term, disabled: true
+    .form-inputs#all_days
       = f.fields_for :days do |d|
-        .day-wrapper.col-md-2
+        .day-wrapper.col-lg-2
           = day_name(d.object.number)
           = d.input :group_id, as: :hidden
           = d.input :number, as: :hidden

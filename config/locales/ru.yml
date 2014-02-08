@@ -18,6 +18,7 @@ ru:
         six_day_week: '6-дневная неделя'
         term: 'Семестр обучения'
       lesson:
+        blank: 'Форточка'
         day: 'День'
         lesson_type: 'Тип'
         number: 'Номер'

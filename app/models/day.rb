@@ -16,7 +16,7 @@ class Day < ActiveRecord::Base
 
   belongs_to :group
   has_many :lessons
-  accepts_nested_attributes_for :lessons
+  accepts_nested_attributes_for :lessons, allow_destroy: true
 
   validates :group, :number, presence: true
 

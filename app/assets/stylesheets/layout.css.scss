@@ -25,3 +25,15 @@ body, html {
   display: inline-block;
   float: left;
 }
+.lesson-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin-bottom: 5px;
+  padding: 5px;
+
+  select {
+    height: 30px;
+    line-height: 18px;
+    font-size: 14px;
+  }
+}

@@ -15,4 +15,11 @@ Mysite::Application.routes.draw do
 
   resources :groups, only: [:index, :show]
   root to: 'groups#index'
+
+  namespace :api do
+    resources :subjects, only: :show do
+      get :teachers, on: :member
+      get :for_term, on: :collection
+    end
+  end
 end

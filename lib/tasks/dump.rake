@@ -8,6 +8,6 @@ namespace :dump do
     db_password = config[rails_env]["password"]
     dump_file_path = "~/dumps/"
     file_name = Date.today.to_s
-    command "export PGPASSWORD=#{db_password} && pg_dump -U #{db_username} #{database} | gzip > #{dump_file_path}studentime-#{file_name}.gz"
+    sh "export PGPASSWORD=#{db_password} && pg_dump -U #{db_username} #{database} | gzip > #{dump_file_path}studentime-#{file_name}.gz"
   end
 end

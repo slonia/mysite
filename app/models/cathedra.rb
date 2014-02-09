@@ -11,6 +11,8 @@
 #
 
 class Cathedra < ActiveRecord::Base
+  default_scope { order(:number) }
+
   validates :name, presence: true
   validates :name, :number, uniqueness: true
 

@@ -1,13 +1,13 @@
 h1 Editing room
 
 .well
-  = simple_nested_form_for([:admin, @group]) do |f|
+  = simple_nested_form_for([:admin, @group], html: { class: 'group-form'}) do |f|
     .form-inputs
       = f.input :name
       = f.input :term, disabled: true
     .form-inputs#all_days
       = f.fields_for :days do |d|
-        .day-wrapper.col-lg-2
+        .day-wrapper.col-lg-2 data-id="#{d.object.id}"
           = day_name(d.object.number)
           = d.input :group_id, as: :hidden
           = d.input :number, as: :hidden

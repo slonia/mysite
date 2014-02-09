@@ -20,13 +20,4 @@ class Day < ActiveRecord::Base
 
   validates :group, :number, presence: true
 
-  before_validation :set_lesson_numbers
-
-  private
-
-    def set_lesson_numbers
-      self.lessons.each_with_index do |lesson, n|
-        lesson.number = n
-      end
-    end
 end

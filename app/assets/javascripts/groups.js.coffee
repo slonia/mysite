@@ -13,8 +13,6 @@ ready = ->
   $('.subject-select').change ->
     updateSelect($(@))
 
-  $('.subject-select').each ->
-    updateSelect($(@))
   $("input[id$='blank']").on 'change', ->
     console.log('chech')
     $(@).parents('.lesson-card').find(':input').attr('disabled', $(@).is(':checked'))

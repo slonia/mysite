@@ -24,7 +24,7 @@ class Teacher < ActiveRecord::Base
   enumerize :degree, in: [:head, :docent, :senior,
                           :assistant, :lab_head, :engineer,
                           :technician, :senior_researcher, :software_engineer,
-                          :laboratorian]
+                          :laboratorian1, :laboratorian2]
 
   attr_reader :full_name
 

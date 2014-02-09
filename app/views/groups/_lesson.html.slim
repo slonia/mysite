@@ -1,0 +1,7 @@
+- if lesson.nil? || lesson.blank
+  = 'пусто'
+- else
+ ul
+  li = lesson.subject.name
+  li = lesson.teacher.full_name
+  li = lesson.room.number

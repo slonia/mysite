@@ -22,6 +22,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+gem 'whenever', require: false
 
 group :doc do
   gem 'sdoc', require: false

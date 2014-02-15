@@ -15,6 +15,6 @@ h1 Listing subjects
         td = subject.teachers.map(&:full_name).join(', ')
         td = render 'actions', subject: subject
 
-  br
+  = paginate @subjects
 
 = link_to 'New Subject', new_admin_subject_path, class: 'btn btn-success'

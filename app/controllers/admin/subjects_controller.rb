@@ -2,6 +2,7 @@ class Admin::SubjectsController < AdminController
   load_and_authorize_resource
 
   def index
+    @subjects = @subjects.page(params[:page])
   end
 
   def show

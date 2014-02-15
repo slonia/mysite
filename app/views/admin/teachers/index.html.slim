@@ -14,6 +14,6 @@ h1 Listing teachers
         td = teacher.full_name
         td = teacher.cathedra.try(:full_name)
         td = render 'actions', teacher: teacher
-  br
+  = paginate @teachers
 
 = link_to 'New Teacher', new_admin_teacher_path, class: 'btn btn-success'

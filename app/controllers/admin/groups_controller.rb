@@ -2,6 +2,7 @@ class Admin::GroupsController < AdminController
   load_and_authorize_resource
 
   def index
+    @groups = @groups.page(params[:page])
   end
 
   def show

@@ -2,6 +2,7 @@ class Admin::TeachersController < AdminController
   load_and_authorize_resource
 
   def index
+    @teachers = @teachers.page(params[:page])
   end
 
   def show

@@ -12,6 +12,6 @@ h1 Listing rooms
         td = group.term
         td = render 'actions', group: group
 
-  br
+  = paginate @groups
 
 = link_to 'New Group', new_admin_group_path, class: 'btn btn-success'

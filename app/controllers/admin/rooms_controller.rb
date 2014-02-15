@@ -2,6 +2,7 @@ class Admin::RoomsController < AdminController
   load_and_authorize_resource
 
   def index
+    @rooms = @rooms.page(params[:page])
   end
 
   def new

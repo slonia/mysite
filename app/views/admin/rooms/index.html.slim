@@ -10,6 +10,6 @@ h1 Listing rooms
         td = room.number
         td = render 'actions', room: room
 
-  br
+  = paginate @rooms
 
 = link_to 'New Room', new_admin_room_path, class: 'btn btn-success'

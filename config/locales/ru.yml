@@ -77,3 +77,10 @@ ru:
     rooms: 'Кабинеты'
     subjects: 'Предметы'
     teachers: 'Учителя'
+  views:
+    pagination:
+      first: "&laquo; В начало"
+      last: "В конец &raquo;"
+      previous: "&lsaquo; Назад"
+      next: "Вперед &rsaquo;"
+      truncate: "..."

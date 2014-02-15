@@ -15,6 +15,6 @@ h1 Listing cathedras
         td = cathedra.description
         td = render 'actions', cathedra: cathedra
 
-  br
+  = paginate @cathedras
 
 = link_to 'New Cathedra', new_admin_cathedra_path, class: 'btn btn-success'

@@ -13,6 +13,8 @@ h1 Editing room
           = d.input :number, as: :hidden
           = d.fields_for :lessons
           = d.link_to_add 'add', :lessons
+          = d.link_to_add 'add second', :lessons, data: { second: true}, class: 'second-link'
+
     .form-actions
       = f.submit class: 'btn btn-primary'
 

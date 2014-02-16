@@ -1,9 +1,11 @@
-- total = @days.map(&:lessons).map(&:count).max
+- total = @days.map(&:lessons).flatten.map(&:number).max
 table.table.table-bordered
   tr
     - (0...@days.count).each do |col|
       th = day_name(col)
-  - (0...total).each do |row|
+  - (0..total).each do |row|
     tr
       - (0...@days.count).each do |col|
-        td = render 'lesson', lesson: @days[col].lessons[row]
+        td
+          - @days[col].lessons.select {|a| a.number == row}.each do |lesson|
+            = render 'lesson', lesson: lesson

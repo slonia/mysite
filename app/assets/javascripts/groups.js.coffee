@@ -6,11 +6,20 @@ updateSelect = (el) ->
       teachers_sel.append('<option value=' + teacher.id + '>' + teacher.name + "</option>")
 
 add_sec = (el) ->
-  link = $(el).parents('.day-wrapper').find('.second-link')
-  ind = $(el).parents('.day-wrapper').find('.add-second').index($(el))
-  link.data('index', ind)
-  link.click()
+  first = $(el).parent('.lesson-card').parent('.fields')
+  if first.next('.fields').find("input[id$='second_group']").is(':checked')
+    second = first.next('.fields')
+    first.hide()
+    second.show()
+  else
+    link = first.parents('.day-wrapper').find('.second-link')
+    ind = first.parents('.day-wrapper').find('.add-second').index($(el))
+    link.data('index', ind)
+    link.click()
 
+hide_second = () ->
+  $('.lesson-card').children('.return-first').each ->
+    $(@).parent('.lesson-card').parent('.fields').hide()
 ready = ->
   $('#all_days').sortable
     items: '.day-wrapper > .fields'
@@ -23,6 +32,7 @@ ready = ->
   $('.add-second').click (e) ->
     e.preventDefault()
     add_sec($(@))
+  hide_second()
 
   $("input[id$='blank']").on 'change', ->
     card = $(@).parents('.lesson-card')
@@ -35,13 +45,18 @@ ready = ->
     $(@).find('.day-wrapper').each ->
       day = $(@).data('id')
       ind = 0
-      $(@).children('.fields').children('.lesson-card').each ->
-        if $(@).parent('.fields').is(':visible')
-          $(@).children("input[id$='day_id']").val(day)
-          $(@).children("input[id$='number']").val(ind)
-          $(@).siblings('.fields').find("input[id$='day_id']").val(day)
-          $(@).siblings('.fields').find("input[id$='number']").val(ind)
+      seconds = 0
+      $(@).find("input[id$='destroy']").each ->
+        if $(@).val() == 'false'
+          el = $(@).parents('.lesson-card')
+          num = el.find("input[id$='number']")
+          if el.find("input[id$='second_group']").is(':checked')
+            num.val(ind-1)
+            seconds += 1
+          else
+            num.val(ind)
           ind += 1
+          ind -= seconds
     true
 $(document).on 'nested:fieldAdded:lessons', (e)->
   updateSelect(e.field.find('.subject-select'))
@@ -49,9 +64,13 @@ $(document).on 'nested:fieldAdded:lessons', (e)->
   e.field.find('.room-select').selectize()
   if $(e.link).data('second')
     e.field.find('.second-group').attr('checked', true)
-    el = e.field
-    # debugger
-    el.appendTo(el.parents('.day-wrapper').children('.fields').eq($(e.link).data('index')))
+    second = e.field
+    first = second.parent('.day-wrapper').children('.fields').eq($(e.link).data('index'))
+    second.insertAfter(first)
+    link = second.find('.add-second')
+    link.text('first')
+    link.removeClass('add-second').addClass('return-first')
+    first.hide()
   e.field.find('.add-second').click (e) ->
     e.preventDefault()
     add_sec($(@))
@@ -62,4 +81,9 @@ $(document).on 'nested:fieldAdded:lessons', (e)->
 $(document).ready(ready)
 $(document).on('page:load', ready)
 
-
+$(document).on 'click', '.return-first', (e) ->
+  e.preventDefault()
+  second = $(@).parent('.lesson-card').parent('.fields')
+  first = second.prev('.fields')
+  second.hide()
+  first.show()

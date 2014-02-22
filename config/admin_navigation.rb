@@ -18,5 +18,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :groups, t('navigation.groups'), admin_groups_path,
       :highlights_on => proc { controller_name == 'groups' } if can? :read, Group
+
+    primary.item :normal, t('navigation.normal'), root_path
   end
 end

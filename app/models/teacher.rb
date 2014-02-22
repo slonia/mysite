@@ -15,6 +15,7 @@
 class Teacher < ActiveRecord::Base
   extend Enumerize
 
+
   belongs_to :cathedra
   has_and_belongs_to_many :subjects
   has_many :lessons
@@ -31,4 +32,10 @@ class Teacher < ActiveRecord::Base
   def full_name
     [surname, name, patronymic].join(' ')
   end
+
+  def short_name
+    "#{I18n.t('short_degrees.' + degree)}. #{surname} #{name[0]}.#{patronymic[0]}."
+  end
+
+
 end

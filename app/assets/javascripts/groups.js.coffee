@@ -3,7 +3,7 @@ updateSelect = (el) ->
   $.getJSON "/api/subjects/" + $(el).children(':selected').val() + '/teachers', (teachers) ->
     teachers_sel.empty()
     for teacher in teachers
-      teachers_sel.append('<option value=' + teacher.id + '>' + teacher.name + "</option>")
+      teachers_sel.append('<option value=' + teacher.id + '>' + teacher.short_name + "</option>")
 
 add_sec = (el) ->
   first = $(el).parent('.lesson-card').parent('.fields')
@@ -18,8 +18,10 @@ add_sec = (el) ->
     link.click()
 
 hide_second = () ->
-  $('.lesson-card').children('.return-first').each ->
-    $(@).parent('.lesson-card').parent('.fields').hide()
+  console.log('hide')
+  $('.lesson-card').each ->
+    if $(@).find("input[id$='second_group']").is(':checked')
+      $(@).parent('.fields').hide()
 ready = ->
   $('#all_days').sortable
     items: '.day-wrapper > .fields'
@@ -27,8 +29,8 @@ ready = ->
     tolerance: 'pointer'
   $('.subject-select').change ->
     updateSelect($(@))
-  $('.subject-select').selectize()
-  $('.room-select').selectize()
+  # $('.subject-select').selectize()
+  # $('.room-select').selectize()
   $('.add-second').click (e) ->
     e.preventDefault()
     add_sec($(@))
@@ -46,22 +48,28 @@ ready = ->
       day = $(@).data('id')
       ind = 0
       seconds = 0
-      $(@).find("input[id$='destroy']").each ->
-        if $(@).val() == 'false'
-          el = $(@).parents('.lesson-card')
-          num = el.find("input[id$='number']")
-          if el.find("input[id$='second_group']").is(':checked')
-            num.val(ind-1)
+      cards = $(@).find("input[id$='destroy']").parents('.lesson-card').parent('.fields')
+      cards_num = cards.length
+      while ind < cards_num
+        el = cards[ind]
+        if $(el).find("input[id$='destroy']").val() == 'false'
+          num = $(el).find("input[id$='number']")
+          val = ind - seconds
+          num.val(val)
+          console.log(ind)
+          if ind + 1 < cards_num && $(cards[ind+1]).find("input[id$='second_group']").is(':checked')
+            $(cards[ind+1]).find("input[id$='number']").val(val)
+            ind += 1
             seconds += 1
-          else
-            num.val(ind)
+            console.log('seconf')
           ind += 1
-          ind -= seconds
     true
 $(document).on 'nested:fieldAdded:lessons', (e)->
   updateSelect(e.field.find('.subject-select'))
-  e.field.find('.subject-select').selectize()
-  e.field.find('.room-select').selectize()
+  # e.field.find('.subject-select').selectize()
+  # e.field.find('.room-select').selectize()
+  e.field.find('.subject-select').change ->
+    updateSelect($(@))
   if $(e.link).data('second')
     e.field.find('.second-group').attr('checked', true)
     second = e.field

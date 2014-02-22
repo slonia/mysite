@@ -53,7 +53,7 @@ ru:
         docent: 'Доцент'
         engineer1: 'Инженер 1-й категории'
         engineer2: 'Инженер 2-й категории'
-        head: 'Начальник кафедры'
+        head: 'Заведующий кафедрой'
         lab_head: 'Заведующий учебными лабораториями'
         laboratorian1: 'Лаборант 1-й категории'
         laboratorian2: 'Лаборант 2-й категории'
@@ -74,6 +74,7 @@ ru:
   navigation:
     cathedras: 'Кафедры'
     groups: 'Группы'
+    normal: 'Пользовательский вид'
     rooms: 'Кабинеты'
     subjects: 'Предметы'
     teachers: 'Учителя'
@@ -84,3 +85,20 @@ ru:
       previous: "&lsaquo; Назад"
       next: "Вперед &rsaquo;"
       truncate: "..."
+
+  short_degrees:
+    assistant: 'асс'
+    docent: 'доц'
+    engineer1: 'инж'
+    engineer2: 'инж'
+    head: 'зав. каф'
+    lab_head: 'зав. лаб'
+    laboratorian1: 'лаб'
+    laboratorian2: 'лаб'
+    professor: 'проф'
+    researcher: 'науч. сотр'
+    senior: 'ст. преп'
+    senior_researcher: 'ст. науч. сотр'
+    software_engineer: 'инж.-прог'
+    technician1: 'техник'
+    technician2: 'техник'

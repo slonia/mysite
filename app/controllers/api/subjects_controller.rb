@@ -14,6 +14,6 @@ class Api::SubjectsController < ApplicationController
   end
 
   def teachers
-    render json: @subject.teachers
+    render json: @subject.teachers.to_json(only: [:id], methods: :short_name)
   end
 end

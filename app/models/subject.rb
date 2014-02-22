@@ -10,6 +10,7 @@
 #
 
 class Subject < ActiveRecord::Base
+  default_scope { order(:name) }
   has_many :lessons
   has_and_belongs_to_many :teachers
 

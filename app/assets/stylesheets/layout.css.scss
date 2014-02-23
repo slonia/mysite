@@ -25,10 +25,17 @@ body, html {
 .day-wrapper {
   display: inline-block;
   float: left;
+
+  h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 .lesson-card {
   background-color: #fff;
   border: 1px solid #eee;
+  border-top: 5px solid #ccc;
   margin-bottom: 5px;
   padding: 5px;
 
@@ -36,5 +43,21 @@ body, html {
     height: 30px;
     line-height: 18px;
     font-size: 14px;
+  }
+}
+.form-actions {
+  border-top: 2px solid #ccc;
+  padding-top: 5px;
+  margin: 12px;
+}
+
+td .subject:nth-child(2) {
+  border-top: 2px solid #eee;
+}
+.subject {
+  font-size: 12px;
+  .title {
+    font-size: 13px;
+    font-weight: bold;
   }
 }

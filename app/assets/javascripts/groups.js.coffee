@@ -6,19 +6,18 @@ updateSelect = (el) ->
       teachers_sel.append('<option value=' + teacher.id + '>' + teacher.short_name + "</option>")
 
 add_sec = (el) ->
-  first = $(el).parent('.lesson-card').parent('.fields')
+  first = $(el).parents('.fields:first')
   if first.next('.fields').find("input[id$='second_group']").is(':checked')
     second = first.next('.fields')
     first.hide()
     second.show()
   else
     link = first.parents('.day-wrapper').find('.second-link')
-    ind = first.parents('.day-wrapper').find('.add-second').index($(el))
+    ind = first.parents('.day-wrapper').find('.fields').index(first)
     link.data('index', ind)
     link.click()
 
 hide_second = () ->
-  console.log('hide')
   $('.lesson-card').each ->
     if $(@).find("input[id$='second_group']").is(':checked')
       $(@).parent('.fields').hide()
@@ -32,6 +31,7 @@ ready = ->
   # $('.subject-select').selectize()
   # $('.room-select').selectize()
   $('.add-second').click (e) ->
+    console.log('aa')
     e.preventDefault()
     add_sec($(@))
   hide_second()
@@ -56,12 +56,12 @@ ready = ->
           num = $(el).find("input[id$='number']")
           val = ind - seconds
           num.val(val)
-          console.log(ind)
           if ind + 1 < cards_num && $(cards[ind+1]).find("input[id$='second_group']").is(':checked')
             $(cards[ind+1]).find("input[id$='number']").val(val)
             ind += 1
             seconds += 1
-            console.log('seconf')
+          ind += 1
+        else
           ind += 1
     true
 $(document).on 'nested:fieldAdded:lessons', (e)->
@@ -73,11 +73,11 @@ $(document).on 'nested:fieldAdded:lessons', (e)->
   if $(e.link).data('second')
     e.field.find('.second-group').attr('checked', true)
     second = e.field
-    first = second.parent('.day-wrapper').children('.fields').eq($(e.link).data('index'))
+    first = second.parents('.day-wrapper').children('.fields').eq($(e.link).data('index'))
     second.insertAfter(first)
     link = second.find('.add-second')
-    link.text('first')
-    link.removeClass('add-second').addClass('return-first')
+    link.text('1я группа')
+    link.removeClass('add-second').addClass('return-first btn-warning')
     first.hide()
   e.field.find('.add-second').click (e) ->
     e.preventDefault()
@@ -91,7 +91,7 @@ $(document).on('page:load', ready)
 
 $(document).on 'click', '.return-first', (e) ->
   e.preventDefault()
-  second = $(@).parent('.lesson-card').parent('.fields')
+  second = $(@).parents('.fields:first')
   first = second.prev('.fields')
   second.hide()
   first.show()

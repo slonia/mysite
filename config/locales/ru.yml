@@ -4,6 +4,7 @@ ru:
   new: 'Создать'
   destroy: 'Удалить'
   edit: 'Редактировать'
+  save: 'Сохранить'
   activerecord:
     attributes:
       cathedra:
@@ -64,6 +65,13 @@ ru:
         software_engineer: 'Инженер-программист'
         technician1: 'Техник 1-й категории'
         technician2: 'Техник 2-й категории'
+  admin:
+    groups:
+      lesson_fields:
+        first: '1я группа'
+        second: '2я группа'
+      edit:
+        add: 'Добавить пару'
   days:
     monday: 'Понедельник'
     tuesday: 'Вторник'

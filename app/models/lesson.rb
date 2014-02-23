@@ -25,7 +25,13 @@ class Lesson < ActiveRecord::Base
   belongs_to :teacher
   belongs_to :room
 
-  validates :subject, :teacher, :room, :day, :number, presence: true, unless: :blank
+  validates :subject, :day, :number, presence: true, unless: :blank
 
   enumerize :lesson_type, in: [:lection, :practice, :other, :seminar], default: :lection
+
+  def teacher_and_name
+    res = teacher.try(:short_name)
+    res += " (#{room.number})" if room
+    res
+  end
 end

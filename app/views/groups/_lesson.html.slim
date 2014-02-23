@@ -1,7 +1,6 @@
-- if lesson.nil? || lesson.blank
-  = 'пусто'
-- else
- ul
-  li = lesson.subject.name
-  li = lesson.teacher.short_name
-  li = lesson.room.number
+- if lesson.present? && !lesson.blank
+  .subject
+    .title
+      = lesson.subject.name
+    .content
+      = lesson.teacher_and_name

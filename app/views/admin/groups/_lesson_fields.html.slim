@@ -1,8 +1,4 @@
 .lesson-card
-  - if f.object.second_group
-    = link_to 'first', '#', class: 'return-first'
-  - else
-    = link_to 'second', '#', class: 'add-second'
   = f.input_field :day_id, as: :hidden
   = f.input_field :number, as: :hidden
   = f.collection_select :subject_id, Subject.where("? = ANY (terms)", @group.term), :id, :name, {}, {class: 'select form-control subject-select', disabled: f.object.blank}
@@ -12,4 +8,9 @@
   .hidden
     = f.input_field :second_group, class: 'second-group', disabled: f.object.blank
   = f.input :blank, label: translate_attr(Lesson, :blank)
-  = f.link_to_remove t('destroy')
+  .btn-group.btn-group-xs.btn-group-justified
+    - if f.object.second_group
+      = link_to t('.first'), '#', class: 'btn btn-warning return-first'
+    - else
+      = link_to t('.second'), '#', class: 'btn btn-info add-second'
+    = f.link_to_remove t('destroy'), class: 'btn btn-danger'

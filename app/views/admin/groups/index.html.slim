@@ -1,5 +1,7 @@
 h1 Listing rooms
 
+= link_to 'New Group', new_admin_group_path, class: 'btn btn-success'
+
 - if @groups.present?
   table.table.table-bordered.table-striped
     tr
@@ -14,4 +16,3 @@ h1 Listing rooms
 
   = paginate @groups
 
-= link_to 'New Group', new_admin_group_path, class: 'btn btn-success'

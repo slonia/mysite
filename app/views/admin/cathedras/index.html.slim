@@ -1,5 +1,7 @@
 h1 Listing cathedras
 
+= link_to 'New Cathedra', new_admin_cathedra_path, class: 'btn btn-success'
+
 - if @cathedras.present?
   table.table.table-bordered.table-striped
     tr
@@ -17,4 +19,3 @@ h1 Listing cathedras
 
   = paginate @cathedras
 
-= link_to 'New Cathedra', new_admin_cathedra_path, class: 'btn btn-success'

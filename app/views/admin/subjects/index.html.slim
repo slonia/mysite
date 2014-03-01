@@ -1,5 +1,7 @@
 h1 Listing subjects
 
+= link_to 'New Subject', new_admin_subject_path, class: 'btn btn-success'
+
 - if @subjects.present?
   table.table.table-bordered.table-striped
     tr
@@ -17,4 +19,3 @@ h1 Listing subjects
 
   = paginate @subjects
 
-= link_to 'New Subject', new_admin_subject_path, class: 'btn btn-success'

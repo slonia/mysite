@@ -19,7 +19,7 @@ class Teacher < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   has_many :lessons
 
-  validates :surname, :name, :patronymic, :degree, presence: true
+  validates :surname, :name, :patronymic, presence: true
 
   enumerize :degree, in: [:head, :professor, :docent, :senior,
                           :assistant, :lab_head, :engineer1, :engineer2,

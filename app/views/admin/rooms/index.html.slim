@@ -1,5 +1,7 @@
 h1 Listing rooms
 
+= link_to 'New Room', new_admin_room_path, class: 'btn btn-success'
+
 - if @rooms.present?
   table.table.table-bordered.table-striped
     tr
@@ -12,4 +14,3 @@ h1 Listing rooms
 
   = paginate @rooms
 
-= link_to 'New Room', new_admin_room_path, class: 'btn btn-success'

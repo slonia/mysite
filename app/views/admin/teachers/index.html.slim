@@ -1,5 +1,7 @@
 h1 Listing teachers
 
+= link_to 'New Teacher', new_admin_teacher_path, class: 'btn btn-success'
+
 - if @teachers.present?
   table.table.table-bordered.table-striped
     tr
@@ -16,4 +18,3 @@ h1 Listing teachers
         td = render 'actions', teacher: teacher
   = paginate @teachers
 
-= link_to 'New Teacher', new_admin_teacher_path, class: 'btn btn-success'

@@ -16,4 +16,5 @@
 /tmp
 /config/database.yml
 /config/app_config.yml
+/config/newrelic.yml
 /.bundle/*

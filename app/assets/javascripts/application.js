@@ -6,3 +6,10 @@
 //= require bootstrap
 //= require selectize
 //= require groups
+
+function start() {
+  $('.custom_select').selectize()
+
+}
+$(document).ready(start)
+$(document).on('page:load', start)

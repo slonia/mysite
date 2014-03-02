@@ -25,16 +25,20 @@ class Group < ActiveRecord::Base
     even = [2, 4, 6, 8, 10]
     today < term_start ? where(term: odd) : where(term: even)
   end
+
   private
 
     def check_days
       days_num = self.six_day_week ? 6 : 5
       days_count = self.days.count
-      days_num -= days_count
-      (days_count...days_num).each do |i|
-        day = self.days.build
-        day.number = i
-        day.save
+      if days_count < days_num
+        (days_count...days_num).each do |i|
+          day = self.days.build
+          day.number = i
+          day.save
+        end
+      else
+        self.days.last(days_count - days_num).map(&:destroy)
       end
     end
 end

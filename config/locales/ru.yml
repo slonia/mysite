@@ -72,6 +72,9 @@ ru:
         second: '2я группа'
       edit:
         add: 'Добавить пару'
+      actions:
+        edit: 'Редактировать расписание'
+        short_edit: 'Редактировать группу'
   days:
     monday: 'Понедельник'
     tuesday: 'Вторник'

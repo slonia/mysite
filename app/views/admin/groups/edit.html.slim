@@ -6,7 +6,8 @@ h1 Editing room
       = p f.object.errors.full_messages.join(', ')
     .form-inputs
       = f.input :name
-      = f.input :term, disabled: true
+      = f.input :term, collection: terms_collection, include_blank: false, disabled: true
+      = f.input :six_day_week, disabled: true
     .form-inputs#all_days
       = f.fields_for :days do |d|
         .day-wrapper.col-lg-2 data-id="#{d.object.id}"

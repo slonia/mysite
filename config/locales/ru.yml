@@ -63,6 +63,7 @@ ru:
         senior: 'Старший преподаватель'
         senior_researcher: 'Старший научный сотрудник'
         software_engineer: 'Инженер-программист'
+        teacher: 'Преподаватель'
         technician1: 'Техник 1-й категории'
         technician2: 'Техник 2-й категории'
   admin:
@@ -113,3 +114,4 @@ ru:
     software_engineer: 'инж.-прог'
     technician1: 'техник'
     technician2: 'техник'
+    teacher: 'преп'

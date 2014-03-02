@@ -21,10 +21,10 @@ class Teacher < ActiveRecord::Base
 
   validates :surname, :name, :patronymic, presence: true
 
-  enumerize :degree, in: [:head, :professor, :docent, :senior,
-                          :assistant, :lab_head, :engineer1, :engineer2,
-                          :technician1, :technician2, :senior_researcher, :researcher, :software_engineer,
-                          :laboratorian1, :laboratorian2]
+  enumerize :degree, in: [:head, :professor, :docent, :assistant,
+                          :senior, :teacher, :lab_head, :engineer1, :engineer2,
+                          :technician1, :technician2, :senior_researcher, :researcher,
+                          :software_engineer, :laboratorian1, :laboratorian2]
 
   attr_reader :full_name
 

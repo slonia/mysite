@@ -1,6 +1,7 @@
-.lesson-card
-  = f.input_field :day_id, as: :hidden
-  = f.input_field :number, as: :hidden
+- id = f.object.second_group ? "#{f.index - 1}b" : "#{f.index}a"
+.lesson-card id="lesson_#{f.object.day_id}_#{id}"
+  = f.input_field :day_id
+  = f.input_field :number
   = f.collection_select :subject_id, Subject.where("? = ANY (terms)", @group.term), :id, :name, {}, {class: 'select form-control subject-select', disabled: f.object.blank}
   = f.collection_select :teacher_id, f.object.subject.try(:teachers) || [], :id, :name, {selected: f.object.teacher_id}, {class: 'select form-control teacher-select', disabled: f.object.blank}
   = f.association :room, label: false, label_method: :number, include_blank: 'room', disabled: f.object.blank, input_html: { class: 'room-select'}

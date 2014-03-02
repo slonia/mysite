@@ -26,6 +26,19 @@ ready = ->
     items: '.day-wrapper > .fields'
     cursor: 'move'
     tolerance: 'pointer'
+    revert: true
+    update: (event, ui)->
+      obj = ui.item
+      matcher = obj.find('.lesson-card').attr('id').match(/(.*_\d*)(a|b)/)
+      if matcher
+        id = '#' + matcher[1]
+        if matcher[2] == 'a'
+          id += 'b'
+          $(id).parent('.fields').insertAfter(obj)
+        else
+          id += 'a'
+          $(id).parent('.fields').insertBefore(obj)
+
   $('.subject-select').change ->
     updateSelect($(@))
   # $('.subject-select').selectize()
@@ -58,8 +71,12 @@ ready = ->
           num.val(val)
           if ind + 1 < cards_num && $(cards[ind+1]).find("input[id$='second_group']").is(':checked')
             $(cards[ind+1]).find("input[id$='number']").val(val)
+            if !!$(cards[ind+1]).find("input[id$='day_id']")
+              $(cards[ind+1]).find("input[id$='day_id']").val(day)
             ind += 1
             seconds += 1
+          if !!$(el).find("input[id$='day_id']")
+            $(el).find("input[id$='day_id']").val(day)
           ind += 1
         else
           ind += 1
@@ -78,6 +95,8 @@ $(document).on 'nested:fieldAdded:lessons', (e)->
     link = second.find('.add-second')
     link.text('1я группа')
     link.removeClass('add-second').addClass('return-first btn-warning')
+    newid = first.find('.lesson-card').attr('id').replace(/(.*_\d*)(a)/, "$1b")
+    second.find('.lesson-card').attr('id', newid)
     first.hide()
   e.field.find('.add-second').click (e) ->
     e.preventDefault()

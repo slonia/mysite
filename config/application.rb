@@ -27,5 +27,7 @@ module Mysite
       g.assets = false
       g.helper = false
     end
+
+    config.middleware.use Errbag::RackHandler
   end
 end

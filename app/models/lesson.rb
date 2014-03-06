@@ -30,7 +30,7 @@ class Lesson < ActiveRecord::Base
   enumerize :lesson_type, in: [:lection, :practice, :other, :seminar], default: :lection
 
   def teacher_and_name
-    res = teacher.try(:short_name)
+    res = teacher.try(:short_name) || ''
     res += " (#{room.number})" if room
     res
   end

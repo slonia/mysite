@@ -25,7 +25,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :teacher
   belongs_to :room
 
-  validates :subject, :day, :number, presence: true, unless: :blank
+  validates :subject, presence: true
 
   enumerize :lesson_type, in: [:lection, :practice, :other, :seminar], default: :lection
 

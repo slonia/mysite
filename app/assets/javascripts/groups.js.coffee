@@ -64,6 +64,7 @@ ready = ->
       seconds = 0
       cards = $(@).find("input[id$='destroy']").parents('.lesson-card').parent('.fields')
       cards_num = cards.length
+      $(cards).find(':input').removeAttr('disabled');
       while ind < cards_num
         el = cards[ind]
         if $(el).find("input[id$='destroy']").val() == 'false'

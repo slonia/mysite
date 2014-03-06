@@ -26,6 +26,7 @@ class Admin::GroupsController < AdminController
   end
 
   def update
+    binding.pry
     if @group.update(group_params)
       redirect_to admin_groups_url, notice: 'Group was successfully updated.'
     else

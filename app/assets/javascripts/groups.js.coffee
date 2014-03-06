@@ -2,6 +2,7 @@ updateSelect = (el) ->
   teachers_sel = $(el).next('.teacher-select')
   $.getJSON "/api/subjects/" + $(el).children(':selected').val() + '/teachers', (teachers) ->
     teachers_sel.empty()
+    teachers_sel.append('<option></option>')
     for teacher in teachers
       teachers_sel.append('<option value=' + teacher.id + '>' + teacher.short_name + "</option>")
 

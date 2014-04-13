@@ -20,13 +20,13 @@ after 'deploy:update', 'deploy:assets:precompile'
 after 'deploy:restart', 'unicorn:stop'
 after 'deploy:restart', 'whenever:update_crontab'
 
-n :start,  'sidekiq:down', :only => SIDEKIQ_LOCKS
+on :start,  'sidekiq:down', :only => SIDEKIQ_LOCKS
 on :finish, 'sidekiq:up',   :only => SIDEKIQ_LOCKS
 
 namespace :sidekiq do
   [:up, :down, :status]. each do |action|
     desc 'Performs sv #{action.to_s} on sidekiq'
-    task action, :roles => :queue do
+    task action do
       run "for task in /etc/service/*sidekiq*; do sv #{action.to_s} ${task##/*/} || true; done"
     end
   end

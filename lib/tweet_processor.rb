@@ -27,7 +27,7 @@ class TweetProcessor
 
     def reply_to(id, text = 'hi frow twitter bot')
       tweet = CLIENT.status(id.to_i)
-      CLIENT.update("@#{tweet.user.username}, #{text}")
+      CLIENT.update("@#{tweet.user.username}, #{text}, time is #{Time.now}")
     end
   end
 end

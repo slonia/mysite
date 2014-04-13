@@ -1,5 +1,8 @@
 Mysite::Application.routes.draw do
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   devise_for :admins, path: '/admin'
   get '/admin', to: 'admin/admin#index', as: :admin_page
 

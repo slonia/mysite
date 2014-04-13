@@ -1,8 +1,8 @@
 class SemanticWorker
   include Sidekiq::Worker
-  sidekiq_options retry: false
+  sidekiq_options retry: 1
 
   def perform(tweet)
-    SemanticProcessor.new(tweet)
+    SemanticProcessor.answer(tweet)
   end
 end

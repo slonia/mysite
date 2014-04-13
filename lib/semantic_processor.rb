@@ -1,7 +1,10 @@
 class SemanticProcessor
   STEMMER = YandexMystem::Extended
 
-  def initialize(tweet)
-    TweetProcessor.reply_to(tweet[:id])
+  class << self
+    def answer(tweet)
+      TweetProcessor.reply_to(tweet[:id])
+    end
   end
+
 end

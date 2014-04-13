@@ -3,6 +3,6 @@ class SemanticWorker
   sidekiq_options retry: 1
 
   def perform(tweet)
-    SemanticProcessor.answer(tweet)
+    SemanticProcessor.new(tweet)
   end
 end

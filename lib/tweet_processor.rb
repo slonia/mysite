@@ -25,9 +25,9 @@ class TweetProcessor
       end
     end
 
-    def reply_to(id, text = 'hi frow twitter bot')
+    def reply_to(id, text = '')
       tweet = CLIENT.status(id.to_i)
-      CLIENT.update("@#{tweet.user.username}, #{text}, time is #{Time.now}")
+      CLIENT.update("@#{tweet.user.username}, сейчас #{Time.now.in_time_zone('Minsk').strftime('%H:%M') } так что ПИШИ КУРСАЧ!!!")
     end
   end
 end

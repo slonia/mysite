@@ -5,6 +5,6 @@ every 2.weeks do
   rake 'dump:create'
 end
 
-every 1.hours do
+every 12.hours do
   rake 'check_tweets'
 end

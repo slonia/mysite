@@ -1,0 +1,18 @@
+h1 Tweet logs
+
+- if @tweet_logs.present?
+  table.table.table-bordered.table-striped
+    tr
+      th Tweet id
+      th Full text
+      th Processed text
+      th Reply
+
+    - @tweet_logs.each do |tweet_log|
+      tr
+        td = tweet_log.tweet_id
+        td = tweet_log.full_text
+        td = HashPresenter.to_html(tweet_log.processed_text)
+        td = tweet_log.reply
+  = paginate @tweet_logs
+

@@ -14,6 +14,7 @@ Mysite::Application.routes.draw do
     resources :groups, except: :show do
       get :short_edit, on: :member
     end
+    resources :tweet_logs, only: [:index, :show, :destroy]
   end
 
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }

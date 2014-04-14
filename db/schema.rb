@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206070056) do
+ActiveRecord::Schema.define(version: 20140414073603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -106,6 +107,15 @@ ActiveRecord::Schema.define(version: 20140206070056) do
   end
 
   add_index "teachers", ["cathedra_id"], name: "index_teachers_on_cathedra_id", using: :btree
+
+  create_table "tweet_logs", force: true do |t|
+    t.string   "tweet_id",       null: false
+    t.string   "full_text"
+    t.hstore   "processed_text"
+    t.string   "reply"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"

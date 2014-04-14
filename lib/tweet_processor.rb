@@ -31,7 +31,7 @@ class TweetProcessor
 
     def reply_to(id, text = '')
       tweet = CLIENT.status(id.to_i)
-      log = TweetLog.find_or_initialize_by_tweet_id(id.to_s)
+      log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
       text = "@#{tweet.user.username}, сейчас #{Time.now.in_time_zone('Minsk').strftime('%H:%M') } так что ПИШИ КУРСАЧ!!!"
       log.update_attributes(reply: text)
       CLIENT.update(text)

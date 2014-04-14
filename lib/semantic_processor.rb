@@ -7,7 +7,7 @@ class SemanticProcessor
     tweet.symbolize_keys!
     @text = tweet[:text]
     @id = tweet[:id]
-    log = TweetLog.find_or_initialize_by_tweet_id(id)
+    log = TweetLog.find_or_initialize_by(tweet_id: id)
     processed_text = process
     log.update_attributes(full_text: text, processed_text: processed_text)
     TweetProcessor.reply_to(id)

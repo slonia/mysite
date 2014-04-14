@@ -14,9 +14,11 @@ class SemanticProcessor
   end
 
   def process
+    i = -1
     STEMMER.stem(text).map do |key,value|
       new_val = value.max_by {|v| v['frequency']}
-      Hash[key, new_val]
-    end
+      i += 1
+      Hash[i, Hash[key, new_val]]
+    end.inject(:merge)
   end
 end

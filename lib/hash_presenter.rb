@@ -1,5 +1,4 @@
 class HashPresenter
-
   class << self
     def to_html(data)
       ''.tap do |s|
@@ -8,14 +7,11 @@ class HashPresenter
         when Hash
           data.each do |key, value|
             name = key.to_s.gsub('m:', '')
-            if @detailed ||
-                ((value.is_a?(Hash) || name != 'id') && !is_url?(value))
-              s << '<dt>' + HashPresenter.to_html(name) + '</dt>'
-              nested_field_class = value.is_a?(Hash) || value.is_a?(Array)
-              s << '<dd'
-              s << ' class="nested-fields"' if nested_field_class
-              s << '>' + HashPresenter.to_html(value) + '</dd>'
-            end
+            s << '<dt>' + HashPresenter.to_html(name) + '</dt>'
+            nested_field_class = value.is_a?(Hash) || value.is_a?(Array)
+            s << '<dd'
+            s << ' class="nested-fields"' if nested_field_class
+            s << '>' + HashPresenter.to_html(value) + '</dd>'
           end
         when Array
           s << data.map{ |item| HashPresenter.to_html(item) }.join("\n")
@@ -30,6 +26,5 @@ class HashPresenter
       return url.is_a?(String) && url =~ URI::regexp
     end
   end
-
 
 end

@@ -10,7 +10,7 @@ class TweetProcessor
 
     def prepare_tweets
       options = {count: 40}
-      last_processed = TwitLog.last.try(:tweet_id)
+      last_processed = TweetLog.last.try(:tweet_id)
       options.merge({since_id: last_processed.to_i}) if last_processed.present?
 
       tweets = CLIENT.mentions_timeline(options)

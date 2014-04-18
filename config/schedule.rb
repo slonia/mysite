@@ -6,5 +6,5 @@ every 2.weeks do
 end
 
 every 12.hours do
-  rake 'check_tweets'
+  # rake 'check_tweets'
 end

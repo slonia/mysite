@@ -17,7 +17,7 @@ class TweetProcessor
       processed = 0
       tweets.each do |tweet|
         puts tweet.class.to_s
-        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet.tweet_id})
+        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet.id})
         processed += 1
       end
       processed.to_s

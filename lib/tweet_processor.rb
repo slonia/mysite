@@ -14,11 +14,13 @@ class TweetProcessor
       options.merge!({since_id: last_processed.to_i}) if last_processed.present?
 
       tweets = CLIENT.mentions_timeline(options)
+      processed = 0
       tweets.each do |tweet|
         puts tweet.class.to_s
-        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet_id})
+        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet.tweet_id})
+        processed += 1
       end
-      true
+      processed.to_s
     end
 
     def reply_to(id, text = '')

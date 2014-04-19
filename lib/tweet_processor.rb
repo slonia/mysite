@@ -11,22 +11,14 @@ class TweetProcessor
     def prepare_tweets
       options = {count: 40}
       last_processed = TweetLog.last.try(:tweet_id)
-      options.merge({since_id: last_processed.to_i}) if last_processed.present?
+      options.merge!({since_id: last_processed.to_i}) if last_processed.present?
 
       tweets = CLIENT.mentions_timeline(options)
-      tweets = strip_extra_info(tweets)
       tweets.each do |tweet|
-        SemanticWorker.perform_async(tweet)
+        puts tweet.class.to_s
+        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet_id})
       end
-    end
-
-    def strip_extra_info(tweets)
-      tweets.map do |tweet|
-        {
-          text: tweet.full_text.gsub(/@\w+\s*/,''),
-          id: tweet.id
-        }
-      end
+      true
     end
 
     def reply_to(id, text = '')

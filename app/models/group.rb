@@ -34,8 +34,8 @@ class Group < ActiveRecord::Base
       dayn -= 1
     end
     day = days[dayn]
-    subjects = day.lessons.map(&:name)
-    subjects.join(', ')
+    subjects = day.lessons.map(&:name) if day.present?
+    subjects.try(:join, ', ') || ''
   end
 
   private

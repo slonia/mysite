@@ -36,6 +36,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def name
-    subject.name.downcase
+    blank ? 'форточка' : subject.name.mb_chars.downcase.to_s
   end
 end

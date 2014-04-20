@@ -23,7 +23,7 @@ class SemanticProcessor
     @log.update_attributes(full_text: text, processed_text: processed_text)
     @date = DateParser.parse(text) || Date.today
     user = User.find_by_twitter_id(@user_id)
-    reply_text = user.group.find_for_date(@date)
+    reply_text = user.group.find_for_day(@date)
     TweetProcessor.reply_to(id, reply_text)
   end
 end

@@ -17,18 +17,21 @@ class TweetProcessor
       processed = 0
       tweets.each do |tweet|
         puts tweet.class.to_s
-        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''), id: tweet.id})
+        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''),
+                                      id: tweet.id,
+                                      user_id: tweet.user.id})
         processed += 1
       end
       processed.to_s
     end
 
-    def reply_to(id, text = '')
+    def reply_to(id, text = nil)
       tweet = CLIENT.status(id.to_i)
       log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
-      text = "@#{tweet.user.username}, сейчас #{Time.now.in_time_zone('Minsk').strftime('%H:%M') } так что ПИШИ КУРСАЧ!!!"
+      text ||= "сейчас #{Time.now.in_time_zone('Minsk').strftime('%H:%M') } так что ПИШИ КУРСАЧ!!!"
+      text = "@#{tweet.user.username}, " << text
       log.update_attributes(reply: text)
-      CLIENT.update(text)
+      CLIENT.update(text, in_reply_to_status_id: id)
     end
   end
 end

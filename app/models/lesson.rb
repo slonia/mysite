@@ -34,4 +34,8 @@ class Lesson < ActiveRecord::Base
     res += " (#{room.number})" if room
     res
   end
+
+  def name
+    subject.name.downcase
+  end
 end

@@ -26,6 +26,18 @@ class Group < ActiveRecord::Base
     today < term_start ? where(term: odd) : where(term: even)
   end
 
+  def find_for_day(date, at = [])
+    dayn = date.wday
+    if dayn == 0
+      dayn = 6
+     else
+      dayn -= 1
+    end
+    day = days[dayn]
+    subjects = day.lessons.map(&:name)
+    subjects.join(', ')
+  end
+
   private
 
     def check_days

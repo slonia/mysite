@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
       User.create!( email: email,
                     username: auth_hash[:info][:nickname],
                     image_url: image,
-                    password: Devise.friendly_token[0,10])
+                    password: Devise.friendly_token[0,10],
+                    twitter_id: auth_hash[:uid])
     end
   end
 end

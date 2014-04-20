@@ -264,10 +264,7 @@ class DateParser
 
     mydate = nil if (answer == '' && mytime == '')
 
-    {
-      title: answer,
-      date: mydate
-    }
+    mydate
   end
 
   def self.next_week_day(date, day)

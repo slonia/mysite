@@ -8,7 +8,7 @@ class SemanticProcessor
     @text = tweet[:text]
     @id = tweet[:id]
     @user_id = tweet[:user_id].to_s
-    log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
+    @log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
     process
   end
 
@@ -23,7 +23,7 @@ class SemanticProcessor
     @log.update_attributes(full_text: text, processed_text: processed_text)
     @date = DateParser.parse(text) || Date.today
     user = User.find_by_twitter_id(@user_id)
-    text = user.group.find_for_date(@date)
-    TweetProcessor.reply_to(id, text)
+    reply_text = user.group.find_for_date(@date)
+    TweetProcessor.reply_to(id, reply_text)
   end
 end

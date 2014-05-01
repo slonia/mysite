@@ -1,7 +1,13 @@
 common: &common
   twitter:
     consumer_key: KEY
-    consumer_secret: SECRET
+    consumer_secret: KEY
+  twitter_bot:
+    consumer_key: KEY
+    consumer_secret: KEY
+    access_token: KEY
+    access_token_secret: KEY
+  rollbar: KEY
 
 production:
   <<: *common

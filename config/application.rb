@@ -28,6 +28,5 @@ module Mysite
       g.helper = false
     end
 
-    config.middleware.use Errbag::RackHandler
   end
 end

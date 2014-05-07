@@ -14,15 +14,17 @@ class TweetProcessor
       options.merge!({since_id: last_processed.to_i}) if last_processed.present?
 
       tweets = CLIENT.mentions_timeline(options)
-      processed = 0
       tweets.each do |tweet|
         puts tweet.class.to_s
-        SemanticWorker.perform_async({text: tweet.full_text.gsub(/@\w+\s*/,''),
-                                      id: tweet.id,
-                                      user_id: tweet.user.id})
-        processed += 1
+        tw = {text: tweet.full_text.gsub(/@\w+\s*/,''),
+                                        id: tweet.id,
+                                        user_id: tweet.user.id}
+        if Rails.env.production?
+          SemanticWorker.perform_async(tw)
+        else
+          SemanticProcessor.new(tw)
+        end
       end
-      processed.to_s
     end
 
     def reply_to(id, text = nil)

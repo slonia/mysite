@@ -11,5 +11,7 @@
 class Room < ActiveRecord::Base
   default_scope { order(:number) }
 
+  NAMES = %w(кабинет комната место где)
+
   validates :number, presence: true
 end

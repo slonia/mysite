@@ -15,6 +15,8 @@
 class Teacher < ActiveRecord::Base
   extend Enumerize
 
+  NAMES = %w(учитель преподаватель наставник препод кто)
+
   belongs_to :cathedra
   has_and_belongs_to_many :subjects
   has_many :lessons

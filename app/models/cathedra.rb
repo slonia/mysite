@@ -13,6 +13,8 @@
 class Cathedra < ActiveRecord::Base
   default_scope { order(:number) }
 
+  NAMES = %w(кафедра)
+
   validates :name, presence: true
   validates :name, :number, uniqueness: true
 

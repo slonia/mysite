@@ -41,4 +41,5 @@ end
 group :development do
   gem 'pry-rails'
   gem 'capistrano-deploy', require: false
+  gem 'rails-erd'
 end

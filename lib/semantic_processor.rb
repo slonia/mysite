@@ -46,12 +46,14 @@ class SemanticProcessor
 
       ent = find_entities
       @log.update_attributes(full_text: text, processed_text: processed_text, entity: ent)
-      @date = DateParser.parse(text) || Date.today
       user = User.find_by_twitter_id(@user_id)
       if user && user.group
+        @date = DateParser.parse(text) || Date.today
         reply_text = user.group.find_for_day(@date)
-        TweetProcessor.reply_to(id, reply_text)
+      else
+        reply_text = 'Для работы с системой зарегистрируйтесь на сайте http://ilya-kolodnik.info/users/auth/twitter'
       end
+      TweetProcessor.reply_to(id, reply_text)
     end
 
     def find_entities

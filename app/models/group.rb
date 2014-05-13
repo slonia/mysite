@@ -11,6 +11,7 @@
 #
 
 class Group < ActiveRecord::Base
+  default_scope { order(:term).order(:name) }
   has_many :days
 
   validates :name, :term, presence: true
@@ -19,11 +20,12 @@ class Group < ActiveRecord::Base
   after_save :check_days
 
   scope :for_current_term, -> do
-    today = Date.today
-    term_start = Date.today.change(month: 2, day: 1)
-    odd = [1, 3, 5, 7, 9]
-    even = [2, 4, 6, 8, 10]
-    today < term_start ? where(term: odd) : where(term: even)
+    # today = Date.today
+    # term_start = Date.today.change(month: 2, day: 1)
+    # odd = [1, 3, 5, 7, 9]
+    # even = [2, 4, 6, 8, 10]
+    # today < term_start ? where(term: odd) : where(term: even)
+
   end
 
   def find_for_day(date, at = [])
@@ -36,6 +38,10 @@ class Group < ActiveRecord::Base
     day = days[dayn]
     subjects = day.lessons.map(&:name) if day.present?
     subjects.try(:join, ', ') || ''
+  end
+
+  def name_with_term
+    "#{term} семестр, #{name} группа"
   end
 
   private

@@ -1,4 +1,4 @@
-h1 Groups
-ul
+h1 Группы
+ul.list-group
   - @groups.each do |group|
-    li = link_to group.name_with_term, group
+    li.list-group-item = link_to group.name_with_term, group

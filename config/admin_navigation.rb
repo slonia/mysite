@@ -19,6 +19,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :groups, t('navigation.groups'), admin_groups_path,
       :highlights_on => proc { controller_name == 'groups' } if can? :read, Group
 
+    primary.item :tweet_logs, t('navigation.tweet_logs'), admin_tweet_logs_path,
+      :highlights_on => proc { controller_name == 'tweet_logs' } if can? :read, TweetLog
+
     primary.item :normal, t('navigation.normal'), root_path
   end
 end

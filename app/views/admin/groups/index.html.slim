@@ -1,6 +1,6 @@
-h1 Listing rooms
+h1 = t('.title')
 
-= link_to 'New Group', new_admin_group_path, class: 'btn btn-success'
+= link_to t('new'), new_admin_group_path, class: 'btn btn-success'
 
 - if @groups.present?
   table.table.table-bordered.table-striped

@@ -1,6 +1,6 @@
-h1 Listing cathedras
+h1 = t('.title')
 
-= link_to 'New Cathedra', new_admin_cathedra_path, class: 'btn btn-success'
+= link_to t('new'), new_admin_cathedra_path, class: 'btn btn-success'
 
 - if @cathedras.present?
   table.table.table-bordered.table-striped

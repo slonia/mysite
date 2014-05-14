@@ -7,4 +7,9 @@ module TranslationsHelper
     return '' if number.blank?
     t('days.' + Day::DAY_NAMES[number].to_s)
   end
+
+  def degree_trans(degree)
+    return '' if degree.blank?
+    t('enumerize.teacher.degree.' + degree)
+  end
 end

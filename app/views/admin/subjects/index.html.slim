@@ -1,6 +1,6 @@
-h1 Listing subjects
+h1 = t('.title')
 
-= link_to 'New Subject', new_admin_subject_path, class: 'btn btn-success'
+= link_to t('new'), new_admin_subject_path, class: 'btn btn-success'
 
 - if @subjects.present?
   table.table.table-bordered.table-striped

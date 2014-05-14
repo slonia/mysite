@@ -1,13 +1,13 @@
-h1 Tweet logs
+h1 = t('.title')
 
 - if @tweet_logs.present?
   table.table.table-bordered.table-striped
     tr
-      th Tweet id
-      th Full text
-      th Processed text
-      th Entities
-      th Reply
+      th = translate_attr(TweetLog, :tweet_id)
+      th = translate_attr(TweetLog, :full_text)
+      th = translate_attr(TweetLog, :processed_text)
+      th = translate_attr(TweetLog, :entity)
+      th = translate_attr(TweetLog, :reply)
 
     - @tweet_logs.each do |tweet_log|
       tr

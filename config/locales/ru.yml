@@ -41,6 +41,12 @@ ru:
         name: 'Имя'
         patronymic: 'Отчество'
         surname: 'Фамилия'
+      tweet_log:
+        entity: 'Сущности'
+        full_text: 'Полный текст'
+        processed_text: 'Разбор'
+        reply: 'Ответ'
+        tweet_id: 'Id твита'
   enumerize:
     lesson:
       lesson_type:
@@ -76,6 +82,27 @@ ru:
       actions:
         edit: 'Редактировать расписание'
         short_edit: 'Редактировать группу'
+    cathedras:
+      index:
+        title: 'Кафедры'
+    groups:
+      index:
+        title: 'Группы'
+    rooms:
+      index:
+        title: 'Кабинеты'
+    subjects:
+      index:
+        title: 'Предметы'
+    teachers:
+      index:
+        title: 'Преподаватели'
+    tweet_logs:
+      index:
+        title: 'Логи сообщений'
+
+
+
   days:
     monday: 'Понедельник'
     tuesday: 'Вторник'
@@ -89,7 +116,8 @@ ru:
     normal: 'Пользовательский вид'
     rooms: 'Кабинеты'
     subjects: 'Предметы'
-    teachers: 'Учителя'
+    teachers: 'Преподаватели'
+    tweet_logs: 'Логи'
   views:
     pagination:
       first: "&laquo; В начало"

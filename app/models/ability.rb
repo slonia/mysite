@@ -6,7 +6,7 @@ class Ability
       can :manage, :all
     else
       cannot :manage, :all
-      can :read, :all
+      can :read, [Group]
     end
   end
 end

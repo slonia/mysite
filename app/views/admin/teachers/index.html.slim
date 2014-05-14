@@ -1,6 +1,6 @@
-h1 Listing teachers
+h1 = t('.title')
 
-= link_to 'New Teacher', new_admin_teacher_path, class: 'btn btn-success'
+= link_to t('new'), new_admin_teacher_path, class: 'btn btn-success'
 
 - if @teachers.present?
   table.table.table-bordered.table-striped
@@ -12,7 +12,7 @@ h1 Listing teachers
 
     - @teachers.each do |teacher|
       tr
-        td = teacher.degree
+        td = degree_trans(teacher.degree)
         td = teacher.full_name
         td = teacher.cathedra.try(:full_name)
         td = render 'actions', teacher: teacher

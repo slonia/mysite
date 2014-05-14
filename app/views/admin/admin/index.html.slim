@@ -1,2 +1,6 @@
-h1 Hi, admin
-p  = link_to "Sign out", destroy_admin_session_path, method: :delete
+h1 Добро пожаловать
+p
+  - if current_admin
+    = link_to "Выйти", destroy_admin_session_path, method: :delete
+  - else
+    = link_to "Войти как админ", new_admin_session_path

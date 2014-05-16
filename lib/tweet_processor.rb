@@ -48,7 +48,7 @@ class TweetProcessor
             result << newtext if i == words.length - 1
           else
             result << newtext
-            newtext = name
+            newtext = name + word
           end
         end
         result

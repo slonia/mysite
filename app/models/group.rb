@@ -28,7 +28,7 @@ class Group < ActiveRecord::Base
 
   end
 
-  def find_for_day(date, at = [])
+  def find_for_day(date, entities = [], at = [])
     dayn = date.wday
     if dayn == 0
       dayn = 6
@@ -36,7 +36,13 @@ class Group < ActiveRecord::Base
       dayn -= 1
     end
     day = days[dayn]
-    subjects = day.lessons.map(&:name) if day.present?
+    lessons = at.blank? ? day.lessons : day.lessons.select { |l| l.number.in?(at) }
+    subjects = lessons.map do |lesson|
+      result = lesson.name
+      result += " (#{lesson.room.number})" if entities.include?(:room) && lesson.room
+      result += " - #{lesson.teacher.initials}" if entities.include?(:teacher) && lesson.teacher
+      result
+    end if day.present?
     subjects.try(:join, ', ') || ''
   end
 

@@ -10,7 +10,7 @@ class TweetProcessor
 
     def prepare_tweets
       options = {count: 40}
-      last_processed = TweetLog.last.try(:tweet_id)
+      last_processed = TweetLog.order(:tweet_id).last.try(:tweet_id)
       options.merge!({since_id: last_processed.to_i}) if last_processed.present?
 
       tweets = CLIENT.mentions_timeline(options)
@@ -27,13 +27,34 @@ class TweetProcessor
       end
     end
 
-    def reply_to(id, text = nil)
+    def reply_to(id, text = '')
       tweet = CLIENT.status(id.to_i)
       log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
-      text ||= "сейчас #{Time.now.in_time_zone('Minsk').strftime('%H:%M') } так что ПИШИ КУРСАЧ!!!"
-      text = "@#{tweet.user.username}, " << text
-      log.update_attributes(reply: text)
-      CLIENT.update(text, in_reply_to_status_id: id)
+      text = check_length(text, tweet.user.username)
+      log.update_attributes(reply: text.to_s)
+      text.each {|part| CLIENT.update(part, in_reply_to_status_id: id); sleep(3) }
+    end
+
+    def check_length(text, username)
+      name_length = username.length + 3
+      name = "@#{username}, "
+      if (text.length + name_length) > 140
+        words = text.split(' ')
+        newtext = name
+        result = []
+        words.each_with_index do |word, i|
+          if (newtext + word).length < 140
+            newtext += word + ' '
+            result << newtext if i == words.length - 1
+          else
+            result << newtext
+            newtext = name
+          end
+        end
+        result
+      else
+        [name + text]
+      end
     end
   end
 end

@@ -35,7 +35,11 @@ class Teacher < ActiveRecord::Base
   end
 
   def short_name
-    "#{I18n.t('short_degrees.' + degree)}. #{surname} #{name[0]}.#{patronymic[0]}."
+    "#{I18n.t('short_degrees.' + degree)}. #{initials}"
+  end
+
+  def initials
+    "#{surname} #{name[0]}.#{patronymic[0]}."
   end
 
 end

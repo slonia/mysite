@@ -3,6 +3,7 @@ h1 = t('.title')
 - if @tweet_logs.present?
   table.table.table-bordered.table-striped
     tr
+      th = 'Время обработки'
       th = translate_attr(TweetLog, :tweet_id)
       th = translate_attr(TweetLog, :full_text)
       th = translate_attr(TweetLog, :processed_text)
@@ -11,6 +12,7 @@ h1 = t('.title')
 
     - @tweet_logs.each do |tweet_log|
       tr
+        td = tweet_log.created_at
         td = tweet_log.tweet_id
         td = tweet_log.full_text
         td = HashPresenter.to_html(tweet_log.processed_text)

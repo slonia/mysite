@@ -2,7 +2,7 @@ class Admin::TweetLogsController < AdminController
   load_and_authorize_resource
 
   def index
-    @tweet_logs = @tweet_logs.page(params[:page])
+    @tweet_logs = @tweet_logs.order('created_at DESC').page(params[:page])
   end
 
   def show

@@ -3,29 +3,29 @@ class SemanticProcessor
   OBJECTS = [:lesson, :teacher, :room]
 
   NUMS = {
-    '1' => 'первый',
-    '2' => 'второй',
-    '3' => 'третий',
-    '4' => 'четвертый',
-    '5' => 'пятый',
-    '6' => 'шестой',
-    '7' => 'седьмой',
-    '8' => 'восьмой',
-    '9' => 'девятый',
-    '10' => 'десятый',
-    '11' => 'одиннадцатый',
-    '12' => 'двенадцатый',
-    '13' => 'тринадцатый',
-    '14' => 'четырнадцатый',
-    '15' => 'пятнадцатый',
-    '16' => 'шестнадцатый',
-    '17' => 'семнадцатый',
-    '18' => 'восемнадцатый',
-    '19' => 'девятнадцатый',
-    '20' => 'двадцатый'
+    'первый' => 1,
+    'второй' => 2,
+    'третий' => 3,
+    'четвертый' => 4,
+    'пятый' => 5,
+    'шестой' => 6,
+    'седьмой' => 7,
+    'восьмой' => 8,
+    'девятый' => 9,
+    'десятый' => 10,
+    'одиннадцатый' => 11,
+    'двенадцатый' => 12,
+    'тринадцатый' => 13,
+    'четырнадцатый' => 14,
+    'пятнадцатый' => 15,
+    'шестнадцатый' => 16,
+    'семнадцатый' => 17,
+    'восемнадцатый' => 18,
+    'девятнадцатый' => 19,
+    'двадцатый' => 20
   }
 
-  attr_accessor :text, :id, :user_id, :date, :log, :processed_text
+  attr_accessor :text, :id, :user_id, :date, :log, :processed_text, :numbers
 
   def initialize(tweet)
     tweet.symbolize_keys!
@@ -49,7 +49,7 @@ class SemanticProcessor
       user = User.find_by_twitter_id(@user_id)
       if user && user.group
         @date = DateParser.parse(text) || Date.today
-        reply_text = user.group.find_for_day(@date)
+        reply_text = user.group.find_for_day(@date, ent.keys, @numbers)
       else
         reply_text = 'Для работы с системой зарегистрируйтесь на сайте http://ilya-kolodnik.info/users/auth/twitter'
       end
@@ -58,9 +58,11 @@ class SemanticProcessor
 
     def find_entities
       answ = {}
+      @numbers ||= []
       processed_text.each do |k, v|
         word = v.word
         res = {}
+        @numbers << (NUMS[word] - 1) if v.part == 'ANUM'
         OBJECTS.each do |obj_name|
           obj = obj_name.to_s.camelize.constantize
           names = []

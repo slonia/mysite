@@ -77,6 +77,8 @@ ru:
       lesson_fields:
         first: '1я группа'
         second: '2я группа'
+      index:
+        title: 'Группы'
       edit:
         add: 'Добавить пару'
       actions:
@@ -85,9 +87,6 @@ ru:
     cathedras:
       index:
         title: 'Кафедры'
-    groups:
-      index:
-        title: 'Группы'
     rooms:
       index:
         title: 'Кабинеты'

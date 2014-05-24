@@ -20,7 +20,7 @@ class Lesson < ActiveRecord::Base
   extend Enumerize
   default_scope { order(:number) }
 
-  NAMES = %w(урок пара занятие что)
+  NAMES = %w(урок пара предмет занятие что)
 
   belongs_to :day
   belongs_to :subject

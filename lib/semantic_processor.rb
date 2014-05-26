@@ -25,13 +25,18 @@ class SemanticProcessor
     'двадцатый' => 20
   }
 
-  attr_accessor :text, :id, :user_id, :date, :log, :processed_text, :numbers
+  GOOD = %w(хорошо верно правильно достойно отлично безошибочно нормально неплохо годно качественно превосходно недурно)
+
+  BAD = %w(плохо отвратительно неверно ошибочно ошибка нехорошо неудовлетворительно паршиво)
+
+  attr_accessor :text, :id, :user_id, :reply_to, :date, :log, :processed_text, :numbers
 
   def initialize(tweet)
     tweet.symbolize_keys!
     @text = tweet[:text]
     @id = tweet[:id]
     @user_id = tweet[:user_id].to_s
+    @reply_to = tweet[:reply_to].to_s
     @log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
     process
   end
@@ -43,12 +48,40 @@ class SemanticProcessor
         new_val = value.max_by {|v| v['frequency']}
         Hash[key, new_val]
       end.inject(:merge)
+      @log.update_attributes(full_text: text, processed_text: processed_text)
 
+      @reply_to.blank? ? process_as_query : process_as_reply
+    end
+
+    def process_as_reply
+      result = nil
+      processed_text.each do |k,v|
+        word = v.word
+        if word.in?(GOOD)
+          result = :good
+          entity = Hash[:good, word.to_sym]
+        elsif word.in?(BAD)
+          result = :bad
+          entity = Hash[:bad, word.to_sym]
+        end
+
+        if result.present?
+          @log.update_attributes(entity: entity, quality: result)
+          break
+        end
+      end
+    end
+
+    def process_as_query
       ent = find_entities
-      @log.update_attributes(full_text: text, processed_text: processed_text, entity: ent)
+      @log.update_attributes(entity: ent)
       user = User.find_by_twitter_id(@user_id)
       if user && user.group
-        @date = DateParser.parse(text) || Date.today
+        @date = DateParser.parse(text)
+        if @date.nil? || ent.blank?
+          @log.update_attributes(quality: :bad)
+        end
+        @date ||= Date.today
         reply_text = user.group.find_for_day(@date, ent.keys, @numbers)
       else
         reply_text = 'Для работы с системой зарегистрируйтесь на сайте http://ilya-kolodnik.info/users/auth/twitter'
@@ -74,9 +107,5 @@ class SemanticProcessor
         answ.merge!(res)
       end
       answ
-    end
-
-    def is_int?(str)
-      true if Integer(str) rescue false
     end
 end

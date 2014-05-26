@@ -47,6 +47,7 @@ ru:
         processed_text: 'Разбор'
         reply: 'Ответ'
         tweet_id: 'Id твита'
+        quality: 'Оценка ответа'
   enumerize:
     lesson:
       lesson_type:
@@ -72,6 +73,10 @@ ru:
         teacher: 'Преподаватель'
         technician1: 'Техник 1-й категории'
         technician2: 'Техник 2-й категории'
+    tweet_log:
+      quality:
+        good: 'Верно'
+        bad: 'Ошибка!'
   admin:
     groups:
       lesson_fields:

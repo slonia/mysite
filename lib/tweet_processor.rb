@@ -16,9 +16,10 @@ class TweetProcessor
       tweets = CLIENT.mentions_timeline(options)
       tweets.each do |tweet|
         puts tweet.class.to_s
-        tw = {text: tweet.full_text.gsub(/@\w+\s*/,''),
-                                        id: tweet.id,
-                                        user_id: tweet.user.id}
+        tw = { text: tweet.full_text.gsub(/@\w+\s*/,''),
+               id: tweet.id,
+               user_id: tweet.user.id,
+               reply_to: tweet.in_reply_to_status_id}
         if Rails.env.production?
           SemanticWorker.perform_async(tw)
         else
@@ -27,12 +28,14 @@ class TweetProcessor
       end
     end
 
-    def reply_to(id, text = '')
-      tweet = CLIENT.status(id.to_i)
-      log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
-      text = check_length(text, tweet.user.username)
-      log.update_attributes(reply: text.to_s)
-      text.each {|part| CLIENT.update(part, in_reply_to_status_id: id); sleep(3) }
+    def reply_to(id, text = nil)
+      if text.present?
+        tweet = CLIENT.status(id.to_i)
+        log = TweetLog.find_or_initialize_by(tweet_id: id.to_s)
+        text = check_length(text, tweet.user.username)
+        log.update_attributes(reply: text.to_s)
+        text.each {|part| CLIENT.update(part, in_reply_to_status_id: id); sleep(3) }
+      end
     end
 
     def check_length(text, username)

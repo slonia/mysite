@@ -9,14 +9,20 @@ h1 = t('.title')
       th = translate_attr(TweetLog, :processed_text)
       th = translate_attr(TweetLog, :entity)
       th = translate_attr(TweetLog, :reply)
+      th = translate_attr(TweetLog, :quality)
 
     - @tweet_logs.each do |tweet_log|
-      tr
+      - quality_class = case tweet_log.quality
+      - when 'good' then 'success'
+      - when 'bad' then 'danger'
+      - else nil end
+      tr class=quality_class
         td = tweet_log.created_at
         td = tweet_log.tweet_id
         td = tweet_log.full_text
         td = HashPresenter.to_html(tweet_log.processed_text)
         td = HashPresenter.to_html(tweet_log.entity)
         td = tweet_log.reply
+        td = tweet_log.quality_text
   = paginate @tweet_logs
 

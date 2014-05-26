@@ -16,16 +16,24 @@ class TweetProcessor
       tweets = CLIENT.mentions_timeline(options)
       tweets.each do |tweet|
         puts tweet.class.to_s
+        in_repl_to = find_first_for_reply(tweet)
         tw = { text: tweet.full_text.gsub(/@\w+\s*/,''),
                id: tweet.id,
                user_id: tweet.user.id,
-               reply_to: tweet.in_reply_to_status_id}
+               reply_to: in_repl_to}
         if Rails.env.production?
           SemanticWorker.perform_async(tw)
         else
           SemanticProcessor.new(tw)
         end
       end
+    end
+
+    def find_first_for_reply(tweet)
+      repl = tweet.in_reply_to_status_id
+      first_reply = nil
+      first_reply = CLIENT.status(repl) if repl.present?
+      first_reply.try(:in_reply_to_status_id)
     end
 
     def reply_to(id, text = nil)

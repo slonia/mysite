@@ -54,10 +54,16 @@ class SemanticProcessor
       end.inject(:merge)
       @log.update_attributes(full_text: text, processed_text: processed_text)
 
-      @reply_to.blank? ? process_as_query : process_as_reply
+      if @reply_to.blank?
+        process_as_query
+      else
+        reply_log = TweetLog.find_by(tweet_id: @reply_to)
+        process_as_reply(reply_log)
+      end
     end
 
-    def process_as_reply
+    def process_as_reply(reply_log)
+      return if reply_log.nil?
       result = nil
       processed_text.each do |k,v|
         word = v.word
@@ -70,7 +76,8 @@ class SemanticProcessor
         end
 
         if result.present?
-          @log.update_attributes(entity: entity, quality: result)
+          @log.update_attributes(entity: entity)
+          reply_log.update_attributes(quality: result)
           break
         end
       end

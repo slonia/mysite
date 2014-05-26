@@ -1,34 +1,35 @@
 h1 = t('.title')
 
 - if @tweet_logs.present?
-  table.table.table-bordered.table-striped
-    tr
-      th = 'Время обработки'
-      th = translate_attr(TweetLog, :tweet_id)
-      th = translate_attr(TweetLog, :full_text)
-      th = translate_attr(TweetLog, :processed_text)
-      th = translate_attr(TweetLog, :entity)
-      th = translate_attr(TweetLog, :reply)
-      th = translate_attr(TweetLog, :quality)
-      th = t('actions')
-    - @tweet_logs.each do |tweet_log|
-      - quality_class = case tweet_log.quality
-      - when 'good' then 'success'
-      - when 'bad' then 'danger'
-      - else nil end
-      tr class=quality_class
-        td = tweet_log.created_at
-        td = tweet_log.tweet_id
-        td = tweet_log.full_text
-        td = HashPresenter.to_html(tweet_log.processed_text)
-        td = HashPresenter.to_html(tweet_log.entity)
-        td = tweet_log.reply
-        td = tweet_log.quality_text
-        td
-          .btn-group.btn-group-sm.btn-group-vertical
-            = link_to t('.mark_good'), mark_good_admin_tweet_log_path(tweet_log), class: 'btn btn-success'
-            = link_to t('.mark_bad'), mark_bad_admin_tweet_log_path(tweet_log), class: 'btn btn-warning'
-            = link_to t('destroy'), admin_tweet_log_path(tweet_log), data: { method: :delete, confirm: 'Вы уверены?'}, class: 'btn btn-danger'
+  .table-responsive
+    table.table.table-bordered.table-striped
+      tr
+        th = 'Время обработки'
+        th = translate_attr(TweetLog, :tweet_id)
+        th = translate_attr(TweetLog, :full_text)
+        th = translate_attr(TweetLog, :processed_text)
+        th = translate_attr(TweetLog, :entity)
+        th = translate_attr(TweetLog, :reply)
+        th = translate_attr(TweetLog, :quality)
+        th = t('actions')
+      - @tweet_logs.each do |tweet_log|
+        - quality_class = case tweet_log.quality
+        - when 'good' then 'success'
+        - when 'bad' then 'danger'
+        - else nil end
+        tr class=quality_class
+          td = tweet_log.created_at
+          td = tweet_log.tweet_id
+          td = tweet_log.full_text
+          td = HashPresenter.to_html(tweet_log.processed_text)
+          td = HashPresenter.to_html(tweet_log.entity)
+          td = tweet_log.reply
+          td = tweet_log.quality_text
+          td
+            .btn-group.btn-group-sm.btn-group-vertical
+              = link_to t('.mark_good'), mark_good_admin_tweet_log_path(tweet_log), class: 'btn btn-success'
+              = link_to t('.mark_bad'), mark_bad_admin_tweet_log_path(tweet_log), class: 'btn btn-warning'
+              = link_to t('destroy'), admin_tweet_log_path(tweet_log), data: { method: :delete, confirm: 'Вы уверены?'}, class: 'btn btn-danger'
 
 
   = paginate @tweet_logs

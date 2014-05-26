@@ -10,7 +10,7 @@ h1 = t('.title')
       th = translate_attr(TweetLog, :entity)
       th = translate_attr(TweetLog, :reply)
       th = translate_attr(TweetLog, :quality)
-
+      th = t('actions')
     - @tweet_logs.each do |tweet_log|
       - quality_class = case tweet_log.quality
       - when 'good' then 'success'
@@ -24,5 +24,12 @@ h1 = t('.title')
         td = HashPresenter.to_html(tweet_log.entity)
         td = tweet_log.reply
         td = tweet_log.quality_text
+        td
+          .btn-group.btn-group-sm.btn-group-vertical
+            = link_to t('.mark_good'), mark_good_admin_tweet_log_path(tweet_log), class: 'btn btn-success'
+            = link_to t('.mark_bad'), mark_bad_admin_tweet_log_path(tweet_log), class: 'btn btn-warning'
+            = link_to t('destroy'), admin_tweet_log_path(tweet_log), data: { method: :delete, confirm: 'Вы уверены?'}, class: 'btn btn-danger'
+
+
   = paginate @tweet_logs
 

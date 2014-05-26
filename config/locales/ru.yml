@@ -104,6 +104,8 @@ ru:
     tweet_logs:
       index:
         title: 'Логи сообщений'
+        mark_good: 'Верный анализ'
+        mark_bad: 'Ошибка анализа'
 
 
 

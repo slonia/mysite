@@ -8,6 +8,15 @@ class Admin::TweetLogsController < AdminController
   def show
   end
 
+  def mark_good
+    @tweet_log.update_column(:quality, :good)
+    redirect_to admin_tweet_logs_url
+  end
+
+  def mark_bad
+    @tweet_log.update_column(:quality, :bad)
+    redirect_to admin_tweet_logs_url
+  end
 
   def destroy
     @tweet_log.destroy

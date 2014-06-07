@@ -18,3 +18,4 @@
 /config/app_config.yml
 /config/newrelic.yml
 /.bundle/*
+erd.png

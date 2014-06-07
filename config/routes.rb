@@ -33,4 +33,6 @@ Mysite::Application.routes.draw do
       get :for_term, on: :collection
     end
   end
+
+  match '*a', via: :all, to: 'errors#not_found'
 end

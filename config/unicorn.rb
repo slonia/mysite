@@ -4,9 +4,9 @@ worker_processes 2
 
 working_directory "/home/#{USER}/web-app"
 
-listen "/home/#{USER}/web-app/tmp/sockets/unicorn.sock", :backlog => 64
+listen "/home/#{USER}/web-app/tmp/sockets/unicorn.studentime.sock", :backlog => 64
 
-pid "/home/#{USER}/web-app/tmp/pids/unicorn.pid"
+pid "/home/#{USER}/web-app/tmp/pids/unicorn.studentime.pid"
 
 preload_app true
 

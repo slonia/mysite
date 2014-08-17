@@ -27,7 +27,7 @@ namespace :sidekiq do
   [:up, :down, :status]. each do |action|
     desc 'Performs sv #{action.to_s} on sidekiq'
     task action do
-      run "for task in /etc/service/*sidekiq*; do sv #{action.to_s} ${task##/*/} || true; done"
+      run " sv #{action.to_s} sidekiq"
     end
   end
 

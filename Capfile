@@ -20,8 +20,8 @@ after 'deploy:update', 'deploy:assets:precompile'
 after 'deploy:restart', 'unicorn:restart'
 after 'deploy:restart', 'whenever:update_crontab'
 
-on :start,  'sidekiq:down', :only => SIDEKIQ_LOCKS
-on :finish, 'sidekiq:up',   :only => SIDEKIQ_LOCKS
+on :start,  'sidekiq:stop', :only => SIDEKIQ_LOCKS
+on :finish, 'sidekiq:start',   :only => SIDEKIQ_LOCKS
 
 
 [:unicorn, :sidekiq].each do |service_name|

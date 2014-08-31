@@ -23,24 +23,16 @@ after 'deploy:restart', 'whenever:update_crontab'
 on :start,  'sidekiq:down', :only => SIDEKIQ_LOCKS
 on :finish, 'sidekiq:up',   :only => SIDEKIQ_LOCKS
 
-namespace :sidekiq do
-  [:up, :down, :status]. each do |action|
-    desc 'Performs sv #{action.to_s} on sidekiq'
-    task action do
-      run " sv #{action.to_s} sidekiq"
-    end
-  end
 
-  desc 'Restarts sidekiq'
-  task :restart do; down; sleep 5; up; end
+[:unicorn, :sidekiq].each do |service_name|
+  namespace service_name do
+    [:start, :stop, :restart]. each do |action|
+      desc 'Performs sv #{action.to_s} on #{service_name}'
+      task action do
+        run " sv #{action.to_s} #{service_name}"
+      end
+    end
+
+  end
 end
 
-namespace :sidekiq do
-  [:start, :stop, :restart]. each do |action|
-    desc 'Performs sv #{action.to_s} on unicorn'
-    task action do
-      run " sv #{action.to_s} sidekiq"
-    end
-  end
-
-end

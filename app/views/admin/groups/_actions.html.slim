@@ -1,5 +1,5 @@
 .btn-group.btn-group-sm.btn-group-vertical
-  = link_to t('show'), admin_group_path(group), class: 'btn btn-default'
+  = link_to t('show'), group, class: 'btn btn-default'
   = link_to t('.short_edit'), short_edit_admin_group_path(group), class: 'btn btn-default'
   = link_to t('.edit'), edit_admin_group_path(group), class: 'btn btn-default'
   = link_to t('destroy'), admin_group_path(group), class: 'btn btn-danger', data: { confirm: 'Are you sure?', method: :delete }

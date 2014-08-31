@@ -1,3 +1,4 @@
+
 class SemanticProcessor
   STEMMER = YandexMystem::Extended
   OBJECTS = [:lesson, :teacher, :room]
@@ -95,7 +96,7 @@ class SemanticProcessor
         @date ||= Date.today
         reply_text = user.group.find_for_day(@date, ent.keys, @numbers)
       else
-        reply_text = 'Для работы с системой зарегистрируйтесь на сайте http://ilya-kolodnik.info/users/auth/twitter'
+        reply_text = 'Для работы с системой зарегистрируйтесь на сайте http://studentime.info/users/auth/twitter'
       end
       TweetProcessor.reply_to(id, reply_text)
     end

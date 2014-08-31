@@ -37,7 +37,7 @@ gem 'twitter'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'whenever', require: false
-gem 'yandex_mystem'
+gem 'yandex_mystem', '= 0.1.1'
 
 group :doc do
   gem 'sdoc', require: false

@@ -20,12 +20,11 @@ class Group < ActiveRecord::Base
   after_save :check_days
 
   scope :for_current_term, -> do
-    # today = Date.today
-    # term_start = Date.today.change(month: 2, day: 1)
-    # odd = [1, 3, 5, 7, 9]
-    # even = [2, 4, 6, 8, 10]
-    # today < term_start ? where(term: odd) : where(term: even)
-
+    today = Date.today
+    term_start = Date.today.change(month: 6, day: 1)
+    odd = [1, 3, 5, 7, 9]
+    even = [2, 4, 6, 8, 10]
+    today < term_start ? where(term: even) : where(term: odd)
   end
 
   def find_for_day(date, entities = [], at = [])

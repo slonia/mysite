@@ -1,12 +1,15 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
-  respond_to :html
   def index
-    @groups = @groups.for_current_term
+    @groups = @groups.for_current_term.group_by(&:term)
   end
 
   def show
     @days = @group.days
-    respond_with @group
+    respond_to do |format|
+      format.html { render layout: true}
+      format.xlsx { render layout: false}
+      format.pdf  { render layout: false}
+    end
   end
 end

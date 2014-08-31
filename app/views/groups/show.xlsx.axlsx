@@ -1,0 +1,20 @@
+workbook = xlsx_package.workbook
+main_sheet = workbook.add_worksheet(name: 'Расписание', page_setup: { orientation: :landscape})
+border = workbook.styles.add_style(border: { style: :thin, color: '000000', outline: true },
+                                   alignment: { horizontal: :center, vertical: :center, wrap_text: true})
+bold_and_border = workbook.styles.add_style(b: true,
+                                            border: { style: :thin, color: '000000', outline: true },
+                                            alignment: { horizontal: :center, vertical: :center, wrap_text: true})
+
+total = @days.map(&:lessons).flatten.map(&:number).max || 0
+row = (0...@days.count).map &method(:day_name)
+main_sheet.add_row row, style: [bold_and_border] * @days.count
+(0..total).each do |row|
+  d_row = []
+  (0...@days.count).each do |col|
+    lessons = @days[col].lessons.select {|a| a.number == row}.each
+    d_row << lessons.map(&:teacher_and_name).join(' / ')
+  end
+  main_sheet.add_row d_row, style: [border] * d_row.size, height: 70
+end
+main_sheet.column_widths 20, 20, 20, 20, 20, 20

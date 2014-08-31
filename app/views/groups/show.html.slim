@@ -9,3 +9,9 @@ table.table.table-bordered
         td
           - @days[col].lessons.select {|a| a.number == row}.each do |lesson|
             = render 'lesson', lesson: lesson
+
+p
+  span Другие форматы:
+  .btn-group
+    = link_to icon('file-excel-o') + '&nbsp;XLSX'.html_safe, group_path(@group, format: :xlsx), class: 'btn btn-success'
+    = link_to icon('file-pdf-o') + '&nbsp;PDF'.html_safe, group_path(@group, format: :pdf), class: 'btn btn-info'

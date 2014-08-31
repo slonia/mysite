@@ -1,4 +1,6 @@
 h1 Группы
-ul.list-group
-  - @groups.each do |group|
-    li.list-group-item = link_to group.name_with_term, group
+- @groups.each do |term, groups|
+  h2 = "#{term} Семестр"
+  ul.list-group
+    - groups.each do |group|
+      li.list-group-item = link_to "#{group.name} группа", group

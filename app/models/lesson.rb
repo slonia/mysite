@@ -32,12 +32,17 @@ class Lesson < ActiveRecord::Base
   enumerize :lesson_type, in: [:lection, :practice, :other, :seminar], default: :lection
 
   def teacher_and_name
+    res = teacher_and_room
+    blank ? nil : [name, res].compact.join(', ')
+  end
+
+  def teacher_and_room
     res = teacher.try(:short_name) || ''
     res += " (#{room.number})" if room
-    res
   end
 
   def name
-    blank ? 'форточка' : subject.name.mb_chars.downcase.to_s
+    blank ? 'форточка' : subject.name.mb_chars.titleize.to_s
   end
+
 end

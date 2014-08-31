@@ -3,8 +3,11 @@ updateSelect = (el) ->
   $.getJSON "/api/subjects/" + $(el).children(':selected').val() + '/teachers', (teachers) ->
     teachers_sel.empty()
     teachers_sel.append('<option></option>')
-    for teacher in teachers
-      teachers_sel.append('<option value=' + teacher.id + '>' + teacher.short_name + "</option>")
+    for teacher,i in teachers
+      if i==0
+        teachers_sel.append('<option selected="true" value=' + teacher.id + '>' + teacher.short_name + "</option>")
+      else
+        teachers_sel.append('<option value=' + teacher.id + '>' + teacher.short_name + "</option>")
 
 add_sec = (el) ->
   first = $(el).parents('.fields:first')

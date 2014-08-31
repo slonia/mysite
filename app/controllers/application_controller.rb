@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       if resource.group
         resource.group
       else
-        edit_user_registration_path(resource)
+        edit_user_registration_path
       end
     else
       root_path

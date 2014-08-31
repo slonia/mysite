@@ -49,6 +49,9 @@ class Group < ActiveRecord::Base
     "#{term} семестр, #{name} группа"
   end
 
+  def full_name
+    "#{name} группа"
+  end
   private
 
     def check_days

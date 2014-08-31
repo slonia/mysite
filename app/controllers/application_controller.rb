@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
     @current_ability ||= Ability.new(current_user)
   end
 
-  def after_sign_in_path_for(resource)
-    if resource.is_a?(Admin)
-      admin_page_path
-    else
-      root_path
-    end
-  end
-
   def permit_params
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"

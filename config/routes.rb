@@ -25,6 +25,7 @@ Mysite::Application.routes.draw do
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
   resources :groups, only: [:index, :show]
+  get '/info', to: "home#info", as: :info
   root to: 'groups#index'
 
   namespace :api do

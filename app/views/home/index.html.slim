@@ -1,7 +1,0 @@
-h1 Hi
-
-- if admin_signed_in?
-  p Admin signed in
-  = link_to 'Admin sign out', destroy_admin_session_path, method: :delete
-- else
-  = link_to 'Sign in as admin', new_admin_session_path

@@ -14,7 +14,7 @@ class Day < ActiveRecord::Base
 
   DAY_NAMES = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday]
 
-  belongs_to :group
+  belongs_to :group, touch: true
   has_many :lessons
   accepts_nested_attributes_for :lessons, allow_destroy: true
 

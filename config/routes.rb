@@ -33,6 +33,8 @@ Mysite::Application.routes.draw do
       get :teachers, on: :member
       get :for_term, on: :collection
     end
+
+    resources :groups
   end
 
   match '*a', via: :all, to: 'errors#not_found'

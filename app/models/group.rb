@@ -52,6 +52,29 @@ class Group < ActiveRecord::Base
   def full_name
     "#{name} группа"
   end
+
+  def schedule_json
+    ds = []
+    days.each do |day|
+      ds << day.lessons.map do |lesson|
+        {
+          name: lesson.name,
+          teacher: lesson.teacher.try(:short_name),
+          room: lesson.room.try(:number),
+          blank: lesson.blank,
+          number: lesson.number,
+          second_group: lesson.second_group
+        }
+      end
+    end
+    {
+      id: id,
+      term: term,
+      name: name,
+      lessons: ds
+    }
+  end
+
   private
 
     def check_days
@@ -67,4 +90,5 @@ class Group < ActiveRecord::Base
         self.days.last(days_count - days_num).map(&:destroy)
       end
     end
+
 end

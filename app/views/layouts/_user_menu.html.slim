@@ -12,5 +12,7 @@ nav.navbar.navbar-default role='navigation'
           li.divider
           li = link_to "Выйти", destroy_user_session_path, method: :delete
   - else
+    ul.nav.navbar-nav.navbar-left
+      li = link_to 'Список групп', root_url
     p.navbar-text.navbar-right
       = link_to image_tag('twitter.png'), user_omniauth_authorize_path(:twitter), class: 'navbar-link'

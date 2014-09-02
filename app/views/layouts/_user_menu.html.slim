@@ -13,4 +13,4 @@ nav.navbar.navbar-default role='navigation'
           li = link_to "Выйти", destroy_user_session_path, method: :delete
   - else
     p.navbar-text.navbar-right
-      = link_to 'Войти с twitter', user_omniauth_authorize_path(:twitter), class: 'navbar-link'
+      = link_to image_tag('twitter.png'), user_omniauth_authorize_path(:twitter), class: 'navbar-link'

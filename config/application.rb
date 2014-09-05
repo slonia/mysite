@@ -28,5 +28,8 @@ module Mysite
       g.helper = false
     end
 
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'grape_api', '*')]
+
   end
 end

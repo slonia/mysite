@@ -28,14 +28,15 @@ Mysite::Application.routes.draw do
   get '/info', to: "home#info", as: :info
   root to: 'groups#index'
 
-  namespace :api do
-    resources :subjects, only: :show do
-      get :teachers, on: :member
-      get :for_term, on: :collection
-    end
+  # namespace :api do
+  #   resources :subjects, only: :show do
+  #     get :teachers, on: :member
+  #     get :for_term, on: :collection
+  #   end
 
-    resources :groups
-  end
-
+  #   resources :groups
+  # end
+  mount Api::Root => '/'
+  mount GrapeSwaggerRails::Engine => '/api'
   match '*a', via: :all, to: 'errors#not_found'
 end
